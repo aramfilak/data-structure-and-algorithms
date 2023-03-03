@@ -18,7 +18,8 @@ function minimumAbsDifference(arr: number[]): number[][] {
 
 
 /*
- * Terminologies:
+ *
+ *  Terminologies:
  * Brute Force: try everything to get the solution.
  * Ad-hoc: no specific well-known algorithm for a problem.
  * Greedy: logically.
