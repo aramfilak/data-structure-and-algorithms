@@ -1,57 +1,4 @@
 /**
- * Time Complexity: O(n^2)
- * Space Complexity: O(n^2)
- * @param start start number.
- * @param end last number.
- * @return compute how many primes between start and end, inclusive indices.
- */
-function countPrimes(start: number, end: number): number {
-    if (start > end) return 0;
-    let result: number = countPrimes(start + 1, end);
-    if (isPrime(start)) result++;
-    return result;
-
-    function isPrime(n: number, i: number = 2): boolean {
-        if (n <= 2) return n === 2;
-        if (n % i === 0) return false;
-        if (i * i > n) return true;
-        return isPrime(n, i + 1);
-    }
-}
-
-/**
- * Time Complexity: O(log n)
- * Space Complexity: O(log n)
- * @param array
- * @param start start pointer =  0
- * @param end end pointer = array.length - 1
- * @return decides if array is palindrome or not.
- */
-function isPalindrome(array: number[], start: number, end: number): boolean {
-    if (start > end) return true;
-    if (array[start] !== array[end]) return false;
-    return isPalindrome(array, start + 1, end - 1);
-}
-
-/**
- * Time Complexity: O(n)
- * Space Complexity: O(n)
- * @param main main string.
- * @param prefix start with string.
- * @param startIndex
- * @return ture if main start with the given prefix, else false.
- */
-function isPrefix(
-    main: string,
-    prefix: string,
-    startIndex: number = 0
-): boolean {
-    if (startIndex === prefix.length) return true;
-    if (prefix[startIndex] !== main[startIndex]) return false;
-    return isPrefix(main, prefix, startIndex + 1);
-}
-
-/**
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  * @param array
@@ -75,6 +22,59 @@ function prefixSum(array: number[], curIndex: number = 0, n: number): number {
 function suffixSum(array: number[], length: number, n: number): number {
     if (length === n) return array[length - 1];
     return array[length - 1] + suffixSum(array, length - 1, n);
+}
+
+/**
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ * @param main main string.
+ * @param prefix start with string.
+ * @param startIndex
+ * @return ture if main start with the given prefix, else false.
+ */
+function isPrefix(
+    main: string,
+    prefix: string,
+    startIndex: number = 0
+): boolean {
+    if (startIndex === prefix.length) return true;
+    if (prefix[startIndex] !== main[startIndex]) return false;
+    return isPrefix(main, prefix, startIndex + 1);
+}
+
+/**
+ * Time Complexity: O(n^2)
+ * Space Complexity: O(n)
+ * @param start start number.
+ * @param end last number.
+ * @return compute how many primes between start and end, inclusive indices.
+ */
+function countPrimes(start: number, end: number): number {
+    if (start > end) return 0;
+    let result: number = countPrimes(start + 1, end);
+    if (isPrime(start)) result++;
+    return result;
+
+    function isPrime(n: number, i: number = 2): boolean {
+        if (n <= 2) return n === 2;
+        if (n % i === 0) return false;
+        if (i * i > n) return true;
+        return isPrime(n, i + 1);
+    }
+}
+
+/**
+ * Time Complexity: O(log n)
+ * Space Complexity: O(n)
+ * @param array
+ * @param start start pointer =  0
+ * @param end end pointer = array.length - 1
+ * @return decides if array is palindrome or not.
+ */
+function isPalindrome(array: number[], start: number, end: number): boolean {
+    if (start > end) return true;
+    if (array[start] !== array[end]) return false;
+    return isPalindrome(array, start + 1, end - 1);
 }
 
 /**
