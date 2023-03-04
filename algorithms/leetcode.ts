@@ -1,13 +1,13 @@
-
 /***************************************************************
- ''''''''''''' My Leetcode Solutions All In One '''''''''''''''
+ My Leetcode Solutions All In One
  ***************************************************************/
-
 
 
 /***************************************************************
  >>>>>>>>>>>>>>>>>>>>>>>> Matrix <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  ***************************************************************/
+
+import {setPriority} from "os";
 
 /**
  * 2319. Check if Matrix Is X-Matrix
@@ -34,7 +34,7 @@ function checkXMatrix(grid: number[][]): boolean {
 }
 
 /**
- * 867. Transpose Matrix (Easy)
+ * 867. Transpose Matrix
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */
@@ -48,10 +48,10 @@ function transpose(matrix: number[][]): number[][] {
         transpose.push(row)
     }
     return transpose;
-};
+}
 
 /**
- * 1275. Find Winner on a Tic Tac Toe Game (Easy)
+ * 1275. Find Winner on a Tic Tac Toe Game
  * Time Complexity: O(1)
  * Space Complexity: O(1)
  */
@@ -91,15 +91,15 @@ function tictactoe(moves: number[][]): string {
         }
         if (isWinner && cur !== '0') return cur;
     }
-    return moves.length >= 9 ? "Draw" : "Pending"
-};
+    return moves.length >= 9 ? "Draw" : "Pending";
+}
 
 /***************************************************************
  >>>>>>>>>>>>>>>>>>>>>>>> Math <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  ***************************************************************/
 
 /**
- * 50. Pow(x, n) (Medium)
+ * 50. Pow(x, n)
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */
@@ -126,23 +126,40 @@ function myPow(x: number, n: number): number {
         };
         return power(x, n);
     }
-};
+}
 
 /***************************************************************
  >>>>> Challenges can be easily solved if array is sorted <<<<<<
  ***************************************************************/
 
 /*
- * 1921. Eliminate Maximum Number of Monsters (Medium)
+ * 1005. Maximize Sum Of Array After K Negations
  * Time Complexity: O(n log n)
  * Space Complexity: O(1)
  */
-function eliminateMaximum(dist: number[], speed: number[]): number {
-    return 1;
-};
+function largestSumAfterKNegations(nums: number[], k: number): number {
+    nums.sort((a, b) => a - b);
+    let sum = 0;
+    let minVAl = nums[0] < 0 ? Math.abs(nums[0]) : nums[0];
+    let minValIdx = 0;
+    for (let i = 0; i < nums.length; i++) {
+        if (k <= 0) break
+        if (nums[i] < 0) {
+            nums[i] = Math.abs(nums[i]);
+            k--;
+        }
+        if (nums[i] < minVAl) {
+            minVAl = nums[i];
+            minValIdx = i;
+        }
+    }
+    if (k % 2 === 1) nums[minValIdx] = -nums[minValIdx];
+    nums.forEach(el => sum += el)
+    return sum;
+}
 
 /**
- * 561. Array Partition (Easy)
+ * 561. Array Partition
  * Time Complexity: O(n log n)
  * Space Complexity: O(1)
  */
@@ -155,7 +172,7 @@ function arrayPairSum(nums: number[]): number {
 }
 
 /**
- * 976. Largest Perimeter Triangle (Easy)
+ * 976. Largest Perimeter Triangle
  * Time Complexity: O(n log n)
  * Space Complexity: O(1)
  */
@@ -171,7 +188,7 @@ function largestPerimeter(nums: number[]): number {
 }
 
 /**
- * 1200. Minimum Absolute Difference (Easy)
+ * 1200. Minimum Absolute Difference
  * Time Complexity: O(n log n)
  * Space Complexity: O(1)
  */
