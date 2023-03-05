@@ -7,7 +7,6 @@
  >>>>>>>>>>>>>>>>>>>>>>>> Matrix <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  ***************************************************************/
 
-import {isNumberObject} from "util/types";
 
 /**
  * 2319. Check if Matrix Is X-Matrix
@@ -134,12 +133,12 @@ function myPow(x: number, n: number): number {
 
 /*
  * 826. Most Profit Assigning Work
- * Time Complexity: O(n log n)
- * Space Complexity: O(n+q)
+ * Time Complexity: O(n+q)
+ * Space Complexity: O(n)
  */
-function maxProfitAssignment(diff: number[], pro: number[], worker: number[]): number {
+function maxProfitAssignment(difficulty: number[], profit: number[], worker: number[]): number {
     const jobs: number[][] = [];
-    for (let i = 0; i < diff.length; i++) jobs.push([diff[i], pro[i]]);
+    for (let i = 0; i < difficulty.length; i++) jobs.push([difficulty[i], profit[i]]);
     worker.sort((a, b) => a - b);
     jobs.sort((a, b) => a[0] - b[0]);
     let job = 0,
