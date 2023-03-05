@@ -1,5 +1,5 @@
 /***************************************************************
- My Leetcode Solutions All In One
+ ------------- My Leetcode Solutions All In One ---------------
  ***************************************************************/
 
 
@@ -7,7 +7,7 @@
  >>>>>>>>>>>>>>>>>>>>>>>> Matrix <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  ***************************************************************/
 
-import {setPriority} from "os";
+import {isNumberObject} from "util/types";
 
 /**
  * 2319. Check if Matrix Is X-Matrix
@@ -129,8 +129,31 @@ function myPow(x: number, n: number): number {
 }
 
 /***************************************************************
- >>>>> Challenges can be easily solved if array is sorted <<<<<<
+ >>>>> Challenges can be solved easier if array is sorted <<<<<<
  ***************************************************************/
+
+/*
+ * 826. Most Profit Assigning Work
+ * Time Complexity: O(n log n)
+ * Space Complexity: O(n+q)
+ */
+function maxProfitAssignment(diff: number[], pro: number[], worker: number[]): number {
+    const jobs: number[][] = [];
+    for (let i = 0; i < diff.length; i++) jobs.push([diff[i], pro[i]]);
+    worker.sort((a, b) => a - b);
+    jobs.sort((a, b) => a[0] - b[0]);
+    let job = 0,
+        curMaxProfit = 0,
+        totalProfit = 0;
+    for (let i = 0; i < worker.length; i++) {
+        while (job < jobs.length && worker[i] >= jobs[job][0]) {
+            curMaxProfit = Math.max(curMaxProfit, jobs[job][1]);
+            job++;
+        }
+        totalProfit += curMaxProfit;
+    }
+    return totalProfit;
+}
 
 /*
  * 1005. Maximize Sum Of Array After K Negations
