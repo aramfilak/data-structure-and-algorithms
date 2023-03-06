@@ -9,7 +9,7 @@
 /**
  * 2319. 242. Valid Anagram
  * Time Complexity: O(n)
- * Space Complexity: O(1)
+ * Space Complexity: O(n)
  */
 function isAnagram(s: string, t: string): boolean {
 	if (s.length !== t.length) return false;

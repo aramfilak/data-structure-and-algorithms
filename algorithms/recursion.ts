@@ -1,6 +1,19 @@
 /**
  * Time Complexity: O(n)
  * Space Complexity: O(n)
+ * @param str input string.
+ * @returns string in reverse.
+ */
+function reverse(str: string): string {
+	if (str.length <= 1) return str;
+	console.log(str);
+
+	return reverse(str.slice(1)) + str[0];
+}
+
+/**
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
  * @param array
  * @param curIndex
  * @param n number of elements.
@@ -255,4 +268,32 @@ function printTriangleV1(rows: number): void {
 function factorial(n: number): number {
 	if (n === 1) return 1;
 	return n * factorial(n - 1);
+}
+
+/**
+ * Time Complexity: O(n)
+ * Space Complexity: : O(n)
+ * @param n
+ * @returns sum of 0 to n.
+ */
+function recursiveRange(n: number): number {
+	if (n === 1) return n;
+	return n + recursiveRange(n - 1);
+}
+
+/**
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ * @param array.
+ * @returns in-place ,capitalize the first
+ * letter of each string in the array.
+ */
+function capitalizeFirst(array: string[]): string[] {
+	function inner(array: string[], len: number) {
+		if (len === -1) return;
+		array[len] = array[len][0].toLocaleUpperCase() + array[len].substring(1);
+		inner(array, len - 1);
+	}
+	inner(array, array.length - 1);
+	return array;
 }
