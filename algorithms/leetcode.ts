@@ -6,14 +6,14 @@
  >>>>>>>>>>>>>>>>>>>>> Binary Search <<<<<<<<<<<<<<<<<<<<<<<<<<<
  ***************************************************************/
 
+import * as querystring from "querystring";
+
 /**
- * 704. Binary Search (LeetCode)
+ * 704. Binary Search
  * Time Complexity: O(log n)
  * Space Complexity: : O(1)
- * @param nums sorted array
- * @param target
  */
-function binarySearch(nums: number[], target: number): number {
+function search(nums: number[], target: number): number {
     let left = 0, right = nums.length - 1;
     while (left <= right) {
         const middleIndex = Math.floor(left + (right - left) / 2);
@@ -26,11 +26,9 @@ function binarySearch(nums: number[], target: number): number {
 }
 
 /**
- * 34. Find First and Last Position of Element in Sorted Array  (LeetCode)
+ * 34. Find First and Last Position of Element in Sorted Array
  * Time Complexity: O(log n)
  * Space Complexity: : O(1)
- * @param nums sorted array
- * @param target
  */
 function searchRange(nums: number[], target: number): number[] {
     let left = 0, right = nums.length - 1, position: number[] = [-1, -1];
@@ -50,6 +48,68 @@ function searchRange(nums: number[], target: number): number[] {
         }
     }
     return position;
+}
+
+/**
+ * 436. Find Right Interval
+ * Time Complexity: O(n log n)
+ * Space Complexity: : O(n)
+ */
+function findRightInterval(intervals: number[][]): number[] {
+    const n = intervals.length;
+    const sorted: [number[], number][] = [];
+    for (let i = 0; i < n; i++)
+        sorted.push([intervals[i], i]);
+    sorted.sort((a, b) => a[0][0] - b[0][0]);
+
+    function binarySearch(target: number): number {
+        const lastIndex = n - 1;
+        if (sorted[lastIndex][0][0] < target) return -1;
+        let left = 0;
+        let right = lastIndex;
+        while (left <= right) {
+            const mid = Math.floor(left + (right - left) / 2);
+            if (sorted[mid][0][0] >= target) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return sorted[left][1];
+    }
+
+    const result: number[] = [];
+    for (let i = 0; i < n; i++) {
+        result[i] = binarySearch(intervals[i][1]);
+    }
+    return result;
+}
+
+/**
+ * 611. Valid Triangle Number
+ * Time Complexity: O(n log n)
+ * Space Complexity: : O(n)
+ */
+function triangleNumber(nums: number[]): number {
+    function binarySearch(nums: number[], left: number, right: number, sum: number): number {
+        while (right >= left && right < nums.length) {
+            const mid = Math.floor((right - left) / 2) + left;
+            if (nums[mid] >= sum) right = mid - 1;
+            else left = mid + 1;
+        }
+        return left;
+    }
+    let ans = 0;
+    nums.sort((a, b) => a - b);
+    const len = nums.length;
+    for (let i = 0; i < len - 2; i++) {
+        let k = i + 2;
+        for (let j = i + 1; j < len- 1 && nums[i] !== 0; j++) {
+            k = binarySearch(nums, k, len - 1, nums[i] + nums[j]);
+            ans += k - j - 1;
+        }
+    }
+    return ans;
 }
 
 /***************************************************************

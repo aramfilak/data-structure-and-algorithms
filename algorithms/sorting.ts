@@ -10,27 +10,27 @@
  * @return sorted array.
  */
 function countSort(array: number[]): number[] {
-    let length: number = array.length,
-        maxValue = array[0];
-    for (let i = 1; i < length; ++i) {
-        if (array[i] > maxValue) {
-            maxValue = array[i];
-        }
+  let length: number = array.length,
+    maxValue = array[0];
+  for (let i = 1; i < length; ++i) {
+    if (array[i] > maxValue) {
+      maxValue = array[i];
     }
-    let count: number[] = [];
-    for (let i = 0; i <= maxValue; i++) {
-        count[i] = 0;
+  }
+  let count: number[] = [];
+  for (let i = 0; i <= maxValue; i++) {
+    count[i] = 0;
+  }
+  for (let i = 0; i < length; i++) {
+    count[array[i]] += 1;
+  }
+  for (let i = 0, j = 0; i <= maxValue; i++) {
+    while (count[i] > 0) {
+      array[j++] = i;
+      count[i] -= 1;
     }
-    for (let i = 0; i < length; i++) {
-        count[array[i]] += 1;
-    }
-    for (let i = 0, j = 0; i <= maxValue; i++) {
-        while (count[i] > 0) {
-            array[j++] = i;
-            count[i] -= 1;
-        }
-    }
-    return array;
+  }
+  return array;
 }
 
 /**++++++++++++++++++++++++++++++++++++++++++++++
@@ -41,11 +41,11 @@ function countSort(array: number[]): number[] {
 let arr: number[] = [];
 let n = 100;
 for (let i = 0; i < n; i++) {
-    arr[i] = (Math.random() * n) | 0;
+  arr[i] = (Math.random() * n) | 0;
 }
 console.log('start');
 let start = performance.now();
-arr = countSort(arr);
+  bubbleSort(arr);
 let end = performance.now();
 console.log(`end => { ${(end - start).toFixed(2)}ms }`);
 console.log(arr);
@@ -61,14 +61,14 @@ console.log(arr);
  * @param array
  */
 function insertionSort(array: number[]): void {
-    for (let i = 1; i < array.length; i++) {
-        let curVal: number = array[i],
-            j: number = i - 1;
-        for (; j > -1 && array[j] > curVal; j--) {
-            array[j + 1] = array[j];
-        }
-        array[j + 1] = curVal;
+  for (let i = 1; i < array.length; i++) {
+    let curVal: number = array[i],
+      j: number = i - 1;
+    for (; j > -1 && array[j] > curVal; j--) {
+      array[j + 1] = array[j];
     }
+    array[j + 1] = curVal;
+  }
 }
 
 /**
@@ -78,15 +78,15 @@ function insertionSort(array: number[]): void {
  * @param array
  */
 function selectionSort(array: number[]): void {
-    for (let i = 0; i < array.length - 1; i++) {
-        let minIndex = i;
-        for (let j = 1 + i; j < array.length; j++) {
-            if (array[j] < array[minIndex]) minIndex = j;
-        }
-        if (minIndex !== i) {
-            [array[i], array[minIndex]] = [array[minIndex], array[i]];
-        }
+  for (let i = 0; i < array.length - 1; i++) {
+    let minIndex = i;
+    for (let j = 1 + i; j < array.length; j++) {
+      if (array[j] < array[minIndex]) minIndex = j;
     }
+    if (minIndex !== i) {
+      [array[i], array[minIndex]] = [array[minIndex], array[i]];
+    }
+  }
 }
 
 /**
@@ -96,11 +96,11 @@ function selectionSort(array: number[]): void {
  * @param   array
  */
 function bubbleSort(array: number[]): void {
-    for (let i = array.length; i > 0; i--) {
-        for (let j = 0; j < i - 1; j++) {
-            if (array[j] > array[j + 1]) {
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
+  for (let i = array.length; i > 0; i--) {
+    for (let j = 0; j < i - 1; j++) {
+      if (array[j] > array[j + 1]) {
+        [array[j], array[j+1]] = [array[j+1], array[j]];
+      }
     }
+  }
 }
