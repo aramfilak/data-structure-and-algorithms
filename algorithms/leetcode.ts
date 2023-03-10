@@ -6,8 +6,6 @@
  >>>>>>>>>>>>>>>>>>>>> Binary Search <<<<<<<<<<<<<<<<<<<<<<<<<<<
  ***************************************************************/
 
-import * as querystring from "querystring";
-
 /**
  * 704. Binary Search
  * Time Complexity: O(log n)
@@ -87,29 +85,23 @@ function findRightInterval(intervals: number[][]): number[] {
 
 /**
  * 611. Valid Triangle Number
- * Time Complexity: O(n log n)
- * Space Complexity: : O(n)
+ * Time Complexity: O(n^2)
+ * Space Complexity: : O(1)
  */
 function triangleNumber(nums: number[]): number {
-    function binarySearch(nums: number[], left: number, right: number, sum: number): number {
-        while (right >= left && right < nums.length) {
-            const mid = Math.floor((right - left) / 2) + left;
-            if (nums[mid] >= sum) right = mid - 1;
-            else left = mid + 1;
-        }
-        return left;
-    }
-    let ans = 0;
+    let count = 0;
+    const n = nums.length;
     nums.sort((a, b) => a - b);
-    const len = nums.length;
-    for (let i = 0; i < len - 2; i++) {
+    for (let i = 0; i < n - 2; i++) {
         let k = i + 2;
-        for (let j = i + 1; j < len- 1 && nums[i] !== 0; j++) {
-            k = binarySearch(nums, k, len - 1, nums[i] + nums[j]);
-            ans += k - j - 1;
+        for (let j = i + 1; j < n - 1 && nums[i] != 0; j++) {
+            while (k < n && nums[i] + nums[j] > nums[k]) {
+                ++k;
+            }
+            count += k - j - 1;
         }
     }
-    return ans;
+    return count;
 }
 
 /***************************************************************
@@ -262,6 +254,20 @@ function myPow(x: number, n: number): number {
         return power(x, n);
     }
 }
+
+/**
+ * 441. Arranging Coins
+ * Time Complexity: O(log n)
+ * Space Complexity: O(1)
+ */
+function arrangeCoins(n: number): number {
+    let ans: number = 0;
+    for (let i = 1; i <= n; i++) {
+        n -= i;
+        ans++;
+    }
+    return ans;
+};
 
 /***************************************************************
  >>>>> Challenges can be solved easier if array is sorted <<<<<<
