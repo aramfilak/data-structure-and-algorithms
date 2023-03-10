@@ -3,6 +3,48 @@
  ***************************************************************/
 
 /***************************************************************
+ >>>>>>>>>>>>>>>>>>>>> Dynamic Programming <<<<<<<<<<<<<<<<<<<<<
+ ***************************************************************/
+
+/**
+ * 509. Fibonacci Number
+ * Time Complexity: O(n)
+ * Space Complexity: : O(1)
+ */
+function fib(n: number): number {
+    if (!n) return n;
+    let num1: number = 0, num2: number = 1, sum: number = num1 + num2;
+    while (n > 1) {
+        sum = num1 + num2;
+        num1 = num2;
+        num2 = sum;
+        n--;
+    }
+    return sum;
+}
+/**
+ * 1137. N-th Tribonacci Number
+ * Time Complexity: O(n)
+ * Space Complexity: : O(1)
+ */
+function tribonacci(n: number): number {
+    if (!n) return n;
+    if (n <= 2) return 1;
+    let num1: number = 0,
+        num2: number = 1,
+        num3: number = 1,
+        sum: number = num1 + num2 + num3;
+    while (n > 2) {
+        sum = num1 + num2 + num3;
+        num1 = num2;
+        num2 = num3;
+        num3 = sum;
+        n--;
+    }
+    return sum;
+}
+
+/***************************************************************
  >>>>>>>>>>>>>>>>>>>>> Binary Search <<<<<<<<<<<<<<<<<<<<<<<<<<<
  ***************************************************************/
 
@@ -12,7 +54,8 @@
  * Space Complexity: : O(1)
  */
 function search(nums: number[], target: number): number {
-    let left = 0, right = nums.length - 1;
+    let left = 0,
+        right = nums.length - 1;
     while (left <= right) {
         const middleIndex = Math.floor(left + (right - left) / 2);
         const middleValue = nums[middleIndex];
@@ -29,15 +72,21 @@ function search(nums: number[], target: number): number {
  * Space Complexity: : O(1)
  */
 function searchRange(nums: number[], target: number): number[] {
-    let left = 0, right = nums.length - 1, position: number[] = [-1, -1];
+    let left = 0,
+        right = nums.length - 1,
+        position: number[] = [-1, -1];
     while (left <= right) {
         const middleIndex = Math.floor(left + (right - left) / 2);
         const middleValue = nums[middleIndex];
         if (middleValue < target) left = middleIndex + 1;
         else if (middleValue > target) right = middleIndex - 1;
         if (middleValue === target) {
-            let left = middleIndex, right = middleIndex;
-            while (nums[left] === target && left > -1 || nums[right] === target && right < nums.length) {
+            let left = middleIndex,
+                right = middleIndex;
+            while (
+                (nums[left] === target && left > -1) ||
+                (nums[right] === target && right < nums.length)
+                ) {
                 if (nums[left] === target) left--;
                 if (nums[right] === target) right++;
                 position = [left + 1, right - 1];
@@ -56,8 +105,7 @@ function searchRange(nums: number[], target: number): number[] {
 function findRightInterval(intervals: number[][]): number[] {
     const n = intervals.length;
     const sorted: [number[], number][] = [];
-    for (let i = 0; i < n; i++)
-        sorted.push([intervals[i], i]);
+    for (let i = 0; i < n; i++) sorted.push([intervals[i], i]);
     sorted.sort((a, b) => a[0][0] - b[0][0]);
 
     function binarySearch(target: number): number {
@@ -186,13 +234,13 @@ function transpose(matrix: number[][]): number[][] {
  */
 function tictactoe(moves: number[][]): string {
     const board: string[][] = [
-        ['0', '0', '0'],
-        ['0', '0', '0'],
-        ['0', '0', '0'],
+        ["0", "0", "0"],
+        ["0", "0", "0"],
+        ["0", "0", "0"],
     ];
     for (let i = 0; i < moves.length; i++) {
-        if (i % 2 === 0) board[moves[i][0]][moves[i][1]] = 'A';
-        else board[moves[i][0]][moves[i][1]] = 'B';
+        if (i % 2 === 0) board[moves[i][0]][moves[i][1]] = "A";
+        else board[moves[i][0]][moves[i][1]] = "B";
     }
     const results = [];
     let leftDiagonalResults = [];
@@ -218,9 +266,9 @@ function tictactoe(moves: number[][]): string {
                 isWinner = false;
             }
         }
-        if (isWinner && cur !== '0') return cur;
+        if (isWinner && cur !== "0") return cur;
     }
-    return moves.length >= 9 ? 'Draw' : 'Pending';
+    return moves.length >= 9 ? "Draw" : "Pending";
 }
 
 /***************************************************************
@@ -267,7 +315,7 @@ function arrangeCoins(n: number): number {
         ans++;
     }
     return ans;
-};
+}
 
 /***************************************************************
  >>>>> Challenges can be solved easier if array is sorted <<<<<<
@@ -323,7 +371,7 @@ function largestSumAfterKNegations(nums: number[], k: number): number {
         }
     }
     if (k % 2 === 1) nums[minValIdx] = -nums[minValIdx];
-    nums.forEach(el => (sum += el));
+    nums.forEach((el) => (sum += el));
     return sum;
 }
 

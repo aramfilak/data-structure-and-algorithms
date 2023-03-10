@@ -11,8 +11,7 @@
 function countSort(array: number[]): void {
     let length: number = array.length,
         maxValue = array[0];
-    for (let i = 1; i < length; ++i)
-        if (array[i] > maxValue) maxValue = array[i];
+    for (let i = 1; i < length; ++i) if (array[i] > maxValue) maxValue = array[i];
     let count: number[] = [];
     for (let i = 0; i <= maxValue; i++) count[i] = 0;
 
@@ -39,7 +38,9 @@ function countSort(array: number[]): void {
 function quickSort(array: number[]): number[] {
     if (array.length < 2) return array;
     const pivot = array[array.length - 1],
-        left = [], right = [], equal = [];
+        left = [],
+        right = [],
+        equal = [];
     for (let val of array) {
         if (val < pivot) left.push(val);
         else if (val > pivot) right.push(val);
@@ -63,7 +64,8 @@ function mergeSort(array: number[]): number[] {
     return merge(mergeSort(left), mergeSort(right));
 
     function merge(left: number[], right: number[]): number[] {
-        let i = 0, j = 0;
+        let i = 0,
+            j = 0;
         const result: number[] = [];
         while (i < left.length && j < right.length) {
             if (left[i] < right[j]) {
@@ -76,7 +78,6 @@ function mergeSort(array: number[]): number[] {
         }
         return result.concat(left.slice(i)).concat(right.slice(j));
     }
-
 }
 
 /**++++++++++++++++++++++++++++++++++++++++++++++
