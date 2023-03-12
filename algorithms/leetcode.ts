@@ -22,6 +22,7 @@ function fib(n: number): number {
     }
     return sum;
 }
+
 /**
  * 1137. N-th Tribonacci Number
  * Time Complexity: O(n)
@@ -150,6 +151,34 @@ function triangleNumber(nums: number[]): number {
         }
     }
     return count;
+}
+
+/**
+ * 1283. Find the Smallest Divisor Given a Threshold
+ * Time Complexity: O(n log m)
+ * Space Complexity: : O(1)
+ */
+
+function smallestDivisor(nums: number[], threshold: number): number {
+    let answer = -1;
+    let left = 1;
+    let right = Math.max(...nums);
+    while (left <= right) {
+        const middleValue = Math.floor(left + (right - left) / 2);
+        const result = findDivisionSum(nums, middleValue);
+        if (result <= threshold) {
+            answer = middleValue;
+            right = middleValue - 1;
+        } else left = middleValue + 1;
+    }
+    return answer;
+    function findDivisionSum(nums: number[], divisor: number): number {
+        let sum = 0;
+        for (const num of nums) {
+            sum += Math.ceil(num / divisor);
+        }
+        return sum;
+    }
 }
 
 /***************************************************************
