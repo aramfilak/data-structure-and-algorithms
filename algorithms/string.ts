@@ -1,6 +1,20 @@
 /***************************************************************
  >>>>>>>>>>>>>>>>>>>>>>>> String <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  ***************************************************************/
+/**
+ * LeetCode Problem:
+ * 49. Group Anagrams
+ * Time Complexity: O(n log n)
+ * Space Complexity: O(n)
+ */
+function groupAnagrams(strs: string[]): string[][] {
+  let map = new Map<string, string[]>();
+  for (let str of strs) {
+    let sortedStr = str.split('').sort().join('');
+    map.set(sortedStr, [...(map.get(sortedStr) ?? []), str]);
+  }
+  return [...map.values()];
+}
 
 /**
  * LeetCode Problem:
@@ -22,6 +36,7 @@ function repeatedSubstringPattern(s: string): boolean {
   return false;
 
 }
+
 /**
  * LeetCode Problem:
  * 2243. Calculate Digit Sum of a String
@@ -70,4 +85,22 @@ function isAnagram(s: string, t: string): boolean {
     if (sLetters.get(letter) !== tLetters.get(letter)) return false;
   }
   return true;
+}
+
+/**
+ * LeetCode Problem:
+ * 58. Length of Last Word
+ * Time Complexity: O(n)
+ * Space Complexity: (1)
+ */
+function lengthOfLastWord(s: string): number {
+  let isLetter = false;
+  let count = 0;
+  for (let i = s.length - 1; i >= 0; i--) {
+    let cur = s[i];
+    if (cur !== ' ') isLetter = true;
+    if (cur !== ' ' && isLetter) count++;
+    else if (count) break;
+  }
+  return count;
 }
