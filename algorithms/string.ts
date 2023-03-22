@@ -4,8 +4,8 @@
 /**
  * LeetCode Problem:
  * 49. Group Anagrams
- * Time Complexity: O(n log n)
- * Space Complexity: O(n)
+ * Time Complexity: O(n * k * log k)
+ * Space Complexity: O(n * k)
  */
 function groupAnagrams(strs: string[]): string[][] {
   let map = new Map<string, string[]>();
@@ -91,7 +91,7 @@ function isAnagram(s: string, t: string): boolean {
  * LeetCode Problem:
  * 58. Length of Last Word
  * Time Complexity: O(n)
- * Space Complexity: (1)
+ * Space Complexity: O(1)
  */
 function lengthOfLastWord(s: string): number {
   let isLetter = false;

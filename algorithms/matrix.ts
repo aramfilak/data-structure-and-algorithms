@@ -95,4 +95,25 @@ function tictactoe(moves: number[][]): string {
   return moves.length >= 9 ? "Draw" : "Pending";
 }
 
+/**
+ * LeetCode Problem:
+ * 2500. Delete Greatest Value in Each Row
+ * Time Complexity: O(n * m * log m)
+ * Space Complexity: O(1)
+ */
+function deleteGreatestValue(grid: number[][]): number {
+  for (const gridElement of grid) {
+    gridElement.sort((a, b) => a - b);
+  }
+  let ans = 0;
+  for (let j = 0; j < grid[0].length; j++) {
+    let max = Number.MIN_VALUE;
+    for (let k = 0; k < grid.length; k++) {
+      if(max < grid[k][j])  max = grid[k][j];
+    }
+    ans += max;
+  }
+  return ans;
+}
+
 
