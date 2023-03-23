@@ -1,3 +1,38 @@
+/***************************************************************
+ >>>>>>>>>>>>>>>>>>>>>> LinkedList <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ ***************************************************************/
+
+
+/**
+ * LeetCode Problem:
+ * 23. Merge k Sorted Lists
+ * Time Complexity: O(n log n)
+ * Space Complexity: O(n)
+ */
+function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
+  if (!lists.length) return null;
+  if (lists.length === 1) return lists[0];
+  let values = [];
+  for (let i = 0; i < lists.length; i++) {
+    let cur = lists[i];
+    while (cur) {
+      values.push(cur.val)
+      cur = cur.next
+    }
+  }
+  if (!values.length) return null;
+  let sortedValues = [...values].sort((a, b) => a - b);
+  let head = new ListNode(sortedValues.shift());
+  let cur = head;
+  while (sortedValues.length) {
+    let node = new ListNode(sortedValues.shift())
+    cur.next = node;
+    cur = cur.next;
+  }
+  return head;
+}
+
+
 class ListNode {
   val: number
   next: ListNode | null
@@ -8,9 +43,7 @@ class ListNode {
   }
 }
 
-/***************************************************************
- >>>>>>>>>>>>>>>>>>>>>> LinkedList <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
- ***************************************************************/
+
 /**
  * LeetCode Problem:
  * 143. Reorder List
