@@ -1,6 +1,15 @@
 /***************************************************************
  >>>>>>>>>>>>>>>>>>>>>> LinkedList <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  ***************************************************************/
+class ListNode {
+  val: number
+  next: ListNode | null
+
+  constructor(val?: number, next?: ListNode | null) {
+    this.val = (val === undefined ? 0 : val)
+    this.next = (next === undefined ? null : next)
+  }
+}
 
 
 /**
@@ -32,17 +41,39 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   return head;
 }
 
+/**
+ * LeetCode Problem:
+ * 2. Add Two Numbers
+ * Time Complexity: O(max(m,n))
+ * Space Complexity: O(max(m,n))
+ */
 
-class ListNode {
-  val: number
-  next: ListNode | null
-
-  constructor(val?: number, next?: ListNode | null) {
-    this.val = (val === undefined ? 0 : val)
-    this.next = (next === undefined ? null : next)
+function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+  let cur1 = l1;
+  let cur2 = l2;
+  let sum = 0n;
+  let pow = 1n;
+  while (cur1|| cur2) {
+    if (cur1) {
+      sum += BigInt(cur1.val) * pow;
+      cur1 = cur1.next;
+    }
+    if (cur2) {
+      sum += BigInt(cur2.val) * pow;
+      cur2 = cur2.next;
+    }
+    pow*=10n;
   }
+  let head = new ListNode(Number(sum % 10n));
+  sum /= 10n;
+  let cur = head;
+  while (sum) {
+    cur.next = new ListNode(Number(sum % 10n));
+    cur = cur.next;
+    sum /= 10n;
+  }
+  return head;
 }
-
 
 /**
  * LeetCode Problem:
