@@ -21,7 +21,7 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
     }
   }
   if (!values.length) return null;
-  let sortedValues = [...values].sort((a, b) => a - b);
+  let sortedValues = values.sort((a, b) => a - b);
   let head = new ListNode(sortedValues.shift());
   let cur = head;
   while (sortedValues.length) {
