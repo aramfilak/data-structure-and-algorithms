@@ -24,7 +24,6 @@ function reorderList(head: ListNode | null): void {
     len++;
     cur = cur.next;
   }
-
   let tailNodes = [], count = 0;
   cur = head;
   while (cur) {
@@ -37,12 +36,12 @@ function reorderList(head: ListNode | null): void {
   cur = head;
   while (tailNodes.length) {
     let tailNode = tailNodes.pop();
-    let temp = cur.next;
+    let nextNode = cur.next;
     cur.next = tailNode;
-    tailNode.next = temp;
-    cur = temp;
+    tailNode.next = nextNode;
+    cur = nextNode;
   }
-  if (cur) cur.next = null;
+  cur.next = null;
 }
 
 /**
