@@ -6,10 +6,10 @@
  */
 
 const searchBST = function (root, val) {
-    while (root && root.val !== val) {
-        root = (val < root.val) ? root.left : root.right;
-    }
-    return root;
+  while (root && root.val !== val) {
+    root = (val < root.val) ? root.left : root.right;
+  }
+  return root;
 };
 
 
@@ -19,28 +19,28 @@ const searchBST = function (root, val) {
  */
 // 98. Validate Binary Search Tree (Medium)
 const isValidBST = function (root) {
-    function inorder(current) {
-        function process(current) {
-            if (!current) {
-                return;
-            }
-            process(current.left);
-            lst.push(current.val);
-            process(current.right);
-        }
-
-        let lst = [];
-        process(current);
-        return lst;
+  function inorder(current) {
+    function process(current) {
+      if (!current) {
+        return;
+      }
+      process(current.left);
+      lst.push(current.val);
+      process(current.right);
     }
 
-    let lst = inorder(root);
-    for (let i = 1; i < lst.length; i++) {
-        if (lst[i - 1] >= lst[i]) {
-            return false;
-        }
+    let lst = [];
+    process(current);
+    return lst;
+  }
+
+  let lst = inorder(root);
+  for (let i = 1; i < lst.length; i++) {
+    if (lst[i - 1] >= lst[i]) {
+      return false;
     }
-    return true;
+  }
+  return true;
 };
 
 /**
@@ -50,19 +50,19 @@ const isValidBST = function (root) {
  */
 // Leet Code 230. Kth Smallest Element in a BST(Medium)
 const kthSmallest = function (root, k) {
-    function inorder(root, k) {
-        if (k <= 0) return -1;
-        if (!root) return k;
-        k = inorder(root.left, k)
-        if (k === 1) {
-            ans = root.val;
-            return 0;
-        }
-        k = inorder(root.right, k - 1);
-        return k;
+  function inorder(root, k) {
+    if (k <= 0) return -1;
+    if (!root) return k;
+    k = inorder(root.left, k)
+    if (k === 1) {
+      ans = root.val;
+      return 0;
     }
+    k = inorder(root.right, k - 1);
+    return k;
+  }
 
-    let ans = null;
-    inorder(root, k);
-    return ans;
+  let ans = null;
+  inorder(root, k);
+  return ans;
 };
