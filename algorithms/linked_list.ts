@@ -11,6 +11,39 @@ class ListNode {
 /***************************************************************
  >>>>>>>>>>>>>>>>>>>>>> LinkedList <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  ***************************************************************/
+/**
+ * LeetCode Problem:
+ * 143. Reorder List
+ * Time Complexity: O(n)
+ * Space Complexity: O(n/2)
+ */
+
+function reorderList(head: ListNode | null): void {
+  let cur = head, len = 0;
+  while (cur) {
+    len++;
+    cur = cur.next;
+  }
+
+  let tailNodes = [], count = 0;
+  cur = head;
+  while (cur) {
+    count++;
+    if (count > Math.round(len / 2)) {
+      tailNodes.push(cur);
+    }
+    cur = cur.next;
+  }
+  cur = head;
+  while (tailNodes.length) {
+    let tailNode = tailNodes.pop();
+    let temp = cur.next;
+    cur.next = tailNode;
+    tailNode.next = temp;
+    cur = temp;
+  }
+  if (cur) cur.next = null;
+}
 
 /**
  * LeetCode Problem:
@@ -35,4 +68,3 @@ function mergeNodes(head: ListNode | null): ListNode | null {
   }
   return head;
 }
-
