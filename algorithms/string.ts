@@ -2,6 +2,26 @@
  >>>>>>>>>>>>>>>>>>>>>>>> String <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  ***************************************************************/
 
+/**
+ * LeetCode Problem:
+ * 3. Longest Substring Without Repeating Characters
+ * Time Complexity: Average Case O(n)
+ * Space Complexity: O(min(n,m))
+ */
+function lengthOfLongestSubstring(s: string): number {
+  if (!s) return 0;
+  let longestSubStr = 0, count = 0;
+  let map = new Map();
+  for (let left = 0, right = 0; right < s.length; right++) {
+    if (map.has(s[right])) {
+      left = Math.max(left, map.get(s[right]) + 1);
+    }
+    map.set(s[right], right);
+    count = right - left + 1;
+    longestSubStr = Math.max(longestSubStr, count);
+  }
+  return longestSubStr;
+}
 
 /**
  * LeetCode Problem:
