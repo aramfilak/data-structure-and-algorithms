@@ -193,15 +193,20 @@ function romanToInt(s: string): number {
 
 /**
  * LeetCode Problem:
- * 191. Number of 1 Bits
- * Time Complexity: O(k)
- * Space Complexity: O(1)
+ * 1790. Check if One String Swap Can Make Strings Equal
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
  */
-function hammingWeight(n: number): number {
-  let ans: number = 0;
-  while (n) {
-    if (n & 1) ans++;
-    n = n >>> 1;
+function areAlmostEqual(s1: string, s2: string): boolean {
+  if (s1 === s2) return true;
+  let indices = [];
+  let arr1 = s1.split('');
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== s2[i]) {
+      indices.push(i);
+      if (indices.length === 2) break;
+    }
   }
-  return ans;
+  [arr1[indices[0]], arr1[indices[1]]] = [arr1[indices[1]], arr1[indices[0]]]
+  return arr1.join("") === s2;
 }

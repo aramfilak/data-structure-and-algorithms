@@ -68,4 +68,40 @@ function subtractProductAndSum(n: number): number {
   return product - sum;
 }
 
+/**
+ * LeetCode Problem:
+ * 202. Happy Number
+ * Time Complexity: O(log n)
+ * Space Complexity: O(1)
+ */
+function isHappy(n: number): boolean {
+  let sumDigit = 0;
+  if (n < 1) return false;
 
+  while (n !== 1) {
+    while (n) {
+      const digit = Math.pow(n % 10, 2);
+      n = Math.floor(n / 10);
+      sumDigit += digit;
+    }
+    n = sumDigit;
+    if (n === 4)  return false;
+    sumDigit = 0;
+  }
+  return true;
+}
+
+/**
+ * LeetCode Problem:
+ * 191. Number of 1 Bits
+ * Time Complexity: O(k)
+ * Space Complexity: O(1)
+ */
+function hammingWeight(n: number): number {
+  let ans: number = 0;
+  while (n) {
+    if (n & 1) ans++;
+    n = n >>> 1;
+  }
+  return ans;
+}

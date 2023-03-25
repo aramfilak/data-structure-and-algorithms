@@ -119,23 +119,4 @@ function deleteGreatestValue(grid: number[][]): number {
 }
 
 
-/**
- * LeetCode Problem:
- * 1779. Find Nearest Point That Has the Same X or Y Coordinate
- * Time Complexity: O(n)
- * Space Complexity: O(1)
- */
-function nearestValidPoint(x: number, y: number, points: number[][]): number {
-  let validPointsIndex = -1, sum = x + y, minDif = Infinity;
-  for (let i = 0; i < points.length; i++) {
-    let curX = points[i][0], curY = points[i][1], curSum = curX + curY;
-    let diff = Math.abs(curSum - sum)
-    if ((curX === x || curY === y) && diff < minDif) {
-      validPointsIndex = i;
-      minDif = diff;
-    }
-  }
-  return validPointsIndex;
-}
-
 
