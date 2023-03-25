@@ -5,7 +5,7 @@
 /**
  * LeetCode Problem:
  * 3. Longest Substring Without Repeating Characters
- * Time Complexity: Average Case O(n)
+ * Time Complexity: O(n)
  * Space Complexity: O(min(n,m))
  */
 function lengthOfLongestSubstring(s: string): number {
@@ -125,4 +125,68 @@ function lengthOfLastWord(s: string): number {
     else if (count) break;
   }
   return count;
+}
+
+/**
+ * LeetCode Problem:
+ * 12. Integer to Roman
+ * Time Complexity: O(1)
+ * Space Complexity: O(1)
+ */
+
+function intToRoman(num: number): string {
+  const roman: [number, string][] = [
+    [1, "I"],
+    [4, "IV"],
+    [5, "V"],
+    [9, "IX"],
+    [10, "X"],
+    [40, "XL"],
+    [50, "L"],
+    [90, "XC"],
+    [100, "C"],
+    [400, "CD"],
+    [500, "D"],
+    [900, "CM"],
+    [1000, "M"]
+  ];
+  let ans: string = "", i = roman.length - 1;
+  while (num) {
+    let digit = roman[i][0], romanDigit = roman[i][1];
+    if (digit <= num) {
+      ans += romanDigit;
+      num -= digit;
+    } else {
+      i--;
+    }
+  }
+  return ans;
+}
+
+/**
+ * LeetCode Problem:
+ * 13. Roman to Integer
+ * Time Complexity: O(n)
+ * Space Complexity: O(1)
+ */
+function romanToInt(s: string): number {
+
+  const roman: { [key: string]: number } = {
+    "I": 1,
+    "V": 5,
+    "X": 10,
+    "L": 50,
+    "C": 100,
+    "D": 500,
+    "M": 1000,
+  }
+  let ans = 0;
+  for (let i = 0; i < s.length; i++) {
+    let cur = roman[s[i]], next = roman[s[i + 1]];
+    if (cur < next) {
+      ans += next - cur;
+      i++;
+    } else ans += cur;
+  }
+  return ans;
 }
