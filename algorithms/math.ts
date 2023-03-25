@@ -49,3 +49,24 @@ function average(salary: number[]): number {
   }
   return (sum - (min+max)) /( salary.length -2);
 }
+
+
+/**
+ * LeetCode Problem:
+ * 1281. Subtract the Product and Sum of Digits of an Integer
+ * Time Complexity: O(n)
+ * Space Complexity: O(1)
+ */
+function subtractProductAndSum(n: number): number {
+  let product =1 ,sum = 0;
+  while(n){
+    let digit =   n %10;
+    product *=digit  ;
+    sum+=digit
+    n= Math.trunc(n/10);
+  }
+
+  return product-sum;
+}
+
+

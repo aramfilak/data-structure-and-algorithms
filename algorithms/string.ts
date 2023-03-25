@@ -190,3 +190,18 @@ function romanToInt(s: string): number {
   }
   return ans;
 }
+
+/**
+ * LeetCode Problem:
+ * 191. Number of 1 Bits
+ * Time Complexity: O(k)
+ * Space Complexity: O(1)
+ */
+function hammingWeight(n: number): number {
+  let ans: number = 0;
+  while (n) {
+    if (n & 1) ans++;
+    n = n >>> 1;
+  }
+  return ans;
+}
