@@ -45,9 +45,9 @@ function average(salary: number[]): number {
   for (const s of salary) {
     if (s < min) min = s;
     if (s > max) max = s;
-    sum+=s;
+    sum += s;
   }
-  return (sum - (min+max)) /( salary.length -2);
+  return (sum - (min + max)) / (salary.length - 2);
 }
 
 
@@ -58,15 +58,14 @@ function average(salary: number[]): number {
  * Space Complexity: O(1)
  */
 function subtractProductAndSum(n: number): number {
-  let product =1 ,sum = 0;
-  while(n){
-    let digit =   n %10;
-    product *=digit  ;
-    sum+=digit
-    n= Math.trunc(n/10);
+  let product = 1, sum = 0;
+  while (n) {
+    let digit = n % 10;
+    product *= digit;
+    sum += digit
+    n = Math.trunc(n / 10);
   }
-
-  return product-sum;
+  return product - sum;
 }
 
 
