@@ -99,5 +99,26 @@ function merge(nums1: number[], m: number, nums2: number[], n: number): void {
   nums1.sort((a, b) => a - b);
 }
 
-
+/**
+ * LeetCode Problem:
+ * 350. Intersection of Two Arrays II
+ * Time Complexity: O(m+n)
+ * Space Complexity: O(m+n)
+ */
+function intersect(nums1: number[], nums2: number[]): number[] {
+  let map = new Map<number, number>();
+  let ans: number[] = [];
+  nums1.forEach(num => {
+    if (map.has(num)) {
+      map.set(num, map.get(num)! + 1);
+    } else map.set(num, 1);
+  })
+  nums2.forEach(num => {
+    if (map.get(num)) {
+      map.set(num, map.get(num)! - 1);
+      ans.push(num)
+    }
+  })
+  return ans;
+}
 
