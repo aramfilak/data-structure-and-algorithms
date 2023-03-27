@@ -31,10 +31,10 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   }
   if (!values.length) return null;
   let sortedValues = values.sort((a, b) => a - b);
-  let head = new ListNode(sortedValues.shift());
+  let head = new ListNode(sortedValues[0]);
   let cur = head;
-  while (sortedValues.length) {
-    let node = new ListNode(sortedValues.shift())
+  for (let i = 1; i < values.length; i++) {
+    let node = new ListNode(values[i]);
     cur.next = node;
     cur = cur.next;
   }
@@ -53,7 +53,7 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
   let cur2 = l2;
   let sum = 0n;
   let pow = 1n;
-  while (cur1|| cur2) {
+  while (cur1 || cur2) {
     if (cur1) {
       sum += BigInt(cur1.val) * pow;
       cur1 = cur1.next;
@@ -62,7 +62,7 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
       sum += BigInt(cur2.val) * pow;
       cur2 = cur2.next;
     }
-    pow*=10n;
+    pow *= 10n;
   }
   let head = new ListNode(Number(sum % 10n));
   sum /= 10n;
@@ -131,3 +131,4 @@ function mergeNodes(head: ListNode | null): ListNode | null {
   }
   return head;
 }
+
