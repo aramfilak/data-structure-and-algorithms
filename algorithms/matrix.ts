@@ -112,5 +112,26 @@ function deleteGreatestValue(grid: number[][]): number {
   return ans;
 }
 
-
+/**
+ * LeetCode Problem:
+ * 566. Reshape the Matrix
+ * Time Complexity: O(m*n)
+ * Space Complexity: O(m*n)
+ */
+function matrixReshape(mat: number[][], r: number, c: number): number[][] {
+  if (mat.length * mat[0].length !== c * r) return mat;
+  let m = 0, row: number[] = [], ans: number[][] = [];
+  for (let i = 0; i < mat.length; i++) {
+    for (let j = 0; j < mat[0].length; j++) {
+      row[m] = mat[i][j];
+      m++;
+      if (m === c) {
+        ans.push(row);
+        row = [];
+        m = 0;
+      }
+    }
+  }
+  return ans;
+}
 

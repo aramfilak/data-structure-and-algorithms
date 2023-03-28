@@ -1,5 +1,29 @@
 /**
  * LeetCode Problem:
+ * 118. Pascal's Triangle
+ * Time Complexity: O(numRows^2)
+ * Space Complexity: : O(numRows^2)
+ */
+function generate(numRows: number): number[][] {
+  let ans: number[][] = [];
+  if (!numRows) return ans;
+  let prevRow = [1];
+  ans.push(prevRow)
+  if (numRows === 1) return ans
+  for (let i = 0; i < numRows - 1; i++) {
+    let row = [1];
+    for (let j = 0; j < prevRow.length - 1; j++) {
+      row[j + 1] = prevRow[j] + prevRow[j + 1]
+    }
+    row.push(1);
+    ans.push(row);
+    prevRow = row;
+  }
+  return ans;
+}
+
+/**
+ * LeetCode Problem:
  * 509. Fibonacci Number
  * Time Complexity: O(n)
  * Space Complexity: : O(1)
@@ -90,5 +114,3 @@ function maxProfit(prices: number[]): number {
   }
   return maxProfit;
 }
-
-console.log(maxProfit([7,1,5,3,6,4]))
