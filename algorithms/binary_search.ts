@@ -125,11 +125,42 @@ function smallestDivisor(nums: number[], threshold: number): number {
     } else left = middleValue + 1;
   }
   return answer;
+
   function findDivisionSum(nums: number[], divisor: number): number {
     let sum = 0;
     for (const num of nums) {
       sum += Math.ceil(num / divisor);
     }
     return sum;
+  }
+}
+
+/**
+ * LeetCode Problem (Medium):
+ * 74. Search a 2D Matrix
+ * Time Complexity: O(m log n)
+ * Space Complexity: O(n)
+ */
+function searchMatrix(matrix: number[][], target: number): boolean {
+  let i = matrix.length - 1;
+  while (i > -1) {
+    if (matrix[i][0] <= target) {
+      return search(matrix[i], target)
+    }
+    i--;
+  }
+  return false
+
+  function search(nums: number[], target: number): boolean {
+    let left = 0,
+      right = nums.length - 1;
+    while (left <= right) {
+      const middleIndex = Math.floor(left + (right - left) / 2);
+      const middleValue = nums[middleIndex];
+      if (middleValue < target) left = middleIndex + 1;
+      else if (middleValue > target) right = middleIndex - 1;
+      else return true;
+    }
+    return false;
   }
 }
