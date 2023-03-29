@@ -11,38 +11,8 @@ class ListNode {
   }
 }
 
-
 /**
- * LeetCode Problem:
- * 23. Merge k Sorted Lists
- * Time Complexity: O(n log n)
- * Space Complexity: O(n)
- */
-function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
-  if (!lists.length) return null;
-  if (lists.length === 1) return lists[0];
-  let values = [];
-  for (let i = 0; i < lists.length; i++) {
-    let cur = lists[i];
-    while (cur) {
-      values.push(cur.val)
-      cur = cur.next
-    }
-  }
-  if (!values.length) return null;
-  let sortedValues = values.sort((a, b) => a - b);
-  let head = new ListNode(sortedValues[0]);
-  let cur = head;
-  for (let i = 1; i < values.length; i++) {
-    let node = new ListNode(values[i]);
-    cur.next = node;
-    cur = cur.next;
-  }
-  return head;
-}
-
-/**
- * LeetCode Problem:
+ * LeetCode Problem (Medium):
  * 2. Add Two Numbers
  * Time Complexity: O(max(m,n))
  * Space Complexity: O(max(m,n))
@@ -76,7 +46,7 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Medium):
  * 143. Reorder List
  * Time Complexity: O(n)
  * Space Complexity: O(n/2)
@@ -109,7 +79,7 @@ function reorderList(head: ListNode | null): void {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Medium):
  * 2181. Merge Nodes in Between Zeros
  * Time Complexity: O(n)
  * Space Complexity: O(1)
@@ -132,3 +102,31 @@ function mergeNodes(head: ListNode | null): ListNode | null {
   return head;
 }
 
+/**
+ * LeetCode Problem (Hard):
+ * 23. Merge k Sorted Lists
+ * Time Complexity: O(n log n)
+ * Space Complexity: O(n)
+ */
+function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
+  if (!lists.length) return null;
+  if (lists.length === 1) return lists[0];
+  let values = [];
+  for (let i = 0; i < lists.length; i++) {
+    let cur = lists[i];
+    while (cur) {
+      values.push(cur.val)
+      cur = cur.next
+    }
+  }
+  if (!values.length) return null;
+  let sortedValues = values.sort((a, b) => a - b);
+  let head = new ListNode(sortedValues[0]);
+  let cur = head;
+  for (let i = 1; i < values.length; i++) {
+    let node = new ListNode(values[i]);
+    cur.next = node;
+    cur = cur.next;
+  }
+  return head;
+}

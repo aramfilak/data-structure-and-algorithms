@@ -1,43 +1,5 @@
-
-
 /**
- * LeetCode Problem:
- * 3. Longest Substring Without Repeating Characters
- * Time Complexity: O(n)
- * Space Complexity: O(min(n,m))
- */
-function lengthOfLongestSubstring(s: string): number {
-  if (!s) return 0;
-  let longestSubStr = 0, count = 0;
-  let map = new Map();
-  for (let left = 0, right = 0; right < s.length; right++) {
-    if (map.has(s[right])) {
-      left = Math.max(left, map.get(s[right]) + 1);
-    }
-    map.set(s[right], right);
-    count = right - left + 1;
-    longestSubStr = Math.max(longestSubStr, count);
-  }
-  return longestSubStr;
-}
-
-/**
- * LeetCode Problem:
- * 49. Group Anagrams
- * Time Complexity: O(n * k * log k)
- * Space Complexity: O(n * k)
- */
-function groupAnagrams(strs: string[]): string[][] {
-  let map = new Map<string, string[]>();
-  for (let str of strs) {
-    let sortedStr = str.split('').sort().join('');
-    map.set(sortedStr, [...(map.get(sortedStr) ?? []), str]);
-  }
-  return [...map.values()];
-}
-
-/**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 459. Repeated Substring Pattern
  * Time Complexity: O(n)
  * Space Complexity: O(n)
@@ -58,7 +20,7 @@ function repeatedSubstringPattern(s: string): boolean {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 2243. Calculate Digit Sum of a String
  * Time Complexity: O(n)
  * Space Complexity: O(n)
@@ -84,10 +46,9 @@ function digitSum(inputString: string, groupSize: number): string {
   return inputString;
 }
 
-
 /**
- * LeetCode Problem:
- * 2319. 242. Valid Anagram
+ * LeetCode Problem (Easy):
+ * 242. Valid Anagram
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */
@@ -108,7 +69,7 @@ function isAnagram(s: string, t: string): boolean {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 58. Length of Last Word
  * Time Complexity: O(n)
  * Space Complexity: O(1)
@@ -126,7 +87,55 @@ function lengthOfLastWord(s: string): number {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
+ * 13. Roman to Integer
+ * Time Complexity: O(n)
+ * Space Complexity: O(1)
+ */
+function romanToInt(s: string): number {
+
+  const roman: { [key: string]: number } = {
+    "I": 1,
+    "V": 5,
+    "X": 10,
+    "L": 50,
+    "C": 100,
+    "D": 500,
+    "M": 1000,
+  }
+  let ans = 0;
+  for (let i = 0; i < s.length; i++) {
+    let cur = roman[s[i]], next = roman[s[i + 1]];
+    if (cur < next) {
+      ans += next - cur;
+      i++;
+    } else ans += cur;
+  }
+  return ans;
+}
+
+/**
+ * LeetCode Problem (Easy):
+ * 1790. Check if One String Swap Can Make Strings Equal
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ */
+function areAlmostEqual(s1: string, s2: string): boolean {
+  if (s1 === s2) return true;
+  let indices = [];
+  let arr1 = s1.split('');
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== s2[i]) {
+      indices.push(i);
+      if (indices.length === 2) break;
+    }
+  }
+  [arr1[indices[0]], arr1[indices[1]]] = [arr1[indices[1]], arr1[indices[0]]]
+  return arr1.join("") === s2;
+}
+
+/**
+ * LeetCode Problem (Medium):
  * 12. Integer to Roman
  * Time Complexity: O(1)
  * Space Complexity: O(1)
@@ -162,49 +171,37 @@ function intToRoman(num: number): string {
 }
 
 /**
- * LeetCode Problem:
- * 13. Roman to Integer
+ * LeetCode Problem (Medium):
+ * 3. Longest Substring Without Repeating Characters
  * Time Complexity: O(n)
- * Space Complexity: O(1)
+ * Space Complexity: O(min(n,m))
  */
-function romanToInt(s: string): number {
-
-  const roman: { [key: string]: number } = {
-    "I": 1,
-    "V": 5,
-    "X": 10,
-    "L": 50,
-    "C": 100,
-    "D": 500,
-    "M": 1000,
+function lengthOfLongestSubstring(s: string): number {
+  if (!s) return 0;
+  let longestSubStr = 0, count = 0;
+  let map = new Map();
+  for (let left = 0, right = 0; right < s.length; right++) {
+    if (map.has(s[right])) {
+      left = Math.max(left, map.get(s[right]) + 1);
+    }
+    map.set(s[right], right);
+    count = right - left + 1;
+    longestSubStr = Math.max(longestSubStr, count);
   }
-  let ans = 0;
-  for (let i = 0; i < s.length; i++) {
-    let cur = roman[s[i]], next = roman[s[i + 1]];
-    if (cur < next) {
-      ans += next - cur;
-      i++;
-    } else ans += cur;
-  }
-  return ans;
+  return longestSubStr;
 }
 
 /**
- * LeetCode Problem:
- * 1790. Check if One String Swap Can Make Strings Equal
- * Time Complexity: O(n)
- * Space Complexity: O(n)
+ * LeetCode Problem (Medium):
+ * 49. Group Anagrams
+ * Time Complexity: O(n * k * log k)
+ * Space Complexity: O(n * k)
  */
-function areAlmostEqual(s1: string, s2: string): boolean {
-  if (s1 === s2) return true;
-  let indices = [];
-  let arr1 = s1.split('');
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== s2[i]) {
-      indices.push(i);
-      if (indices.length === 2) break;
-    }
+function groupAnagrams(strs: string[]): string[][] {
+  let map = new Map<string, string[]>();
+  for (let str of strs) {
+    let sortedStr = str.split('').sort().join('');
+    map.set(sortedStr, [...(map.get(sortedStr) ?? []), str]);
   }
-  [arr1[indices[0]], arr1[indices[1]]] = [arr1[indices[1]], arr1[indices[0]]]
-  return arr1.join("") === s2;
+  return [...map.values()];
 }

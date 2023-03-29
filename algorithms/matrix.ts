@@ -1,5 +1,5 @@
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 2319. Check if Matrix Is X-Matrix
  * Time Complexity: O(n)
  * Space Complexity: O(1)
@@ -29,7 +29,7 @@ function checkXMatrix(grid: number[][]): boolean {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 867. Transpose Matrix
  * Time Complexity: O(n)
  * Space Complexity: O(n)
@@ -47,7 +47,7 @@ function transpose(matrix: number[][]): number[][] {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 1275. Find Winner on a Tic Tac Toe Game
  * Time Complexity: O(1)
  * Space Complexity: O(1)
@@ -92,7 +92,7 @@ function tictactoe(moves: number[][]): string {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 2500. Delete Greatest Value in Each Row
  * Time Complexity: O(n * m * log m)
  * Space Complexity: O(1)
@@ -113,7 +113,7 @@ function deleteGreatestValue(grid: number[][]): number {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 566. Reshape the Matrix
  * Time Complexity: O(m*n)
  * Space Complexity: O(m*n)
@@ -134,4 +134,3 @@ function matrixReshape(mat: number[][], r: number, c: number): number[][] {
   }
   return ans;
 }
-

@@ -1,5 +1,5 @@
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Medium):
  * 50. Pow(x, n)
  * Time Complexity: O(n)
  * Space Complexity: O(n)

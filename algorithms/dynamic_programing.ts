@@ -1,5 +1,5 @@
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 118. Pascal's Triangle
  * Time Complexity: O(numRows^2)
  * Space Complexity: : O(numRows^2)
@@ -9,7 +9,6 @@ function generate(numRows: number): number[][] {
   if (!numRows) return ans;
   let prevRow = [1];
   ans.push(prevRow)
-  if (numRows === 1) return ans
   for (let i = 0; i < numRows - 1; i++) {
     let row = [1];
     for (let j = 0; j < prevRow.length - 1; j++) {
@@ -21,9 +20,8 @@ function generate(numRows: number): number[][] {
   }
   return ans;
 }
-
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 509. Fibonacci Number
  * Time Complexity: O(n)
  * Space Complexity: : O(1)
@@ -41,7 +39,7 @@ function fib(n: number): number {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 1137. N-th Tribonacci Number
  * Time Complexity: O(n)
  * Space Complexity: : O(1)
@@ -64,7 +62,24 @@ function tribonacci(n: number): number {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
+ * 121. Best Time to Buy and Sell Stock
+ * Time Complexity: O(n)
+ * Space Complexity: : O(1)
+ */
+function maxProfit(prices: number[]): number {
+  let minPrice = prices[0];
+  let maxProfit = 0;
+  for (let i = 1; i < prices.length; i++) {
+    const currentPrice = prices[i];
+    const potentialProfit = currentPrice - minPrice;
+    maxProfit = Math.max(maxProfit, potentialProfit);
+    minPrice = Math.min(minPrice, currentPrice);
+  }
+  return maxProfit;
+}
+/**
+ * LeetCode Problem (Medium):
  * 45. Jump Game II
  * Time Complexity: O(n)
  * Space Complexity: : O(1)
@@ -81,8 +96,9 @@ function jump(nums: number[]): number {
   return jump;
 }
 
+
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Medium):
  * 53. Maximum Subarray
  * Time Complexity: O(n)
  * Space Complexity: : O(1)
@@ -95,22 +111,4 @@ function maxSubArray(nums: number[]): number {
     max = Math.max(max, sum);
   }
   return max;
-}
-
-/**
- * LeetCode Problem:
- * 121. Best Time to Buy and Sell Stock
- * Time Complexity: O(n)
- * Space Complexity: : O(1)
- */
-function maxProfit(prices: number[]): number {
-  let minPrice = prices[0];
-  let maxProfit = 0;
-  for (let i = 1; i < prices.length; i++) {
-    const currentPrice = prices[i];
-    const potentialProfit = currentPrice - minPrice;
-    maxProfit = Math.max(maxProfit, potentialProfit);
-    minPrice = Math.min(minPrice, currentPrice);
-  }
-  return maxProfit;
 }

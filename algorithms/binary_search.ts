@@ -1,5 +1,5 @@
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 704. Binary Search
  * Time Complexity: O(log n)
  * Space Complexity: : O(1)
@@ -18,7 +18,7 @@ function search(nums: number[], target: number): number {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Medium):
  * 34. Find First and Last Position of Element in Sorted Array
  * Time Complexity: O(log n)
  * Space Complexity: : O(1)
@@ -50,7 +50,7 @@ function searchRange(nums: number[], target: number): number[] {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Medium):
  * 436. Find Right Interval
  * Time Complexity: O(n log n)
  * Space Complexity: : O(n)
@@ -85,7 +85,7 @@ function findRightInterval(intervals: number[][]): number[] {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Medium):
  * 611. Valid Triangle Number
  * Time Complexity: O(n^2)
  * Space Complexity: : O(1)
@@ -107,7 +107,7 @@ function triangleNumber(nums: number[]): number {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Medium):
  * 1283. Find the Smallest Divisor Given a Threshold
  * Time Complexity: O(n log m)
  * Space Complexity: : O(1)

@@ -134,38 +134,8 @@ function bubbleSort(array: number[]): void {
 /***************************************************************
  >>>>> Challenges can be solved easier if array is sorted <<<<<<
  ***************************************************************/
-
 /*
- * LeetCode Problem:
- * 826. Most Profit Assigning Work
- * Time Complexity: O(n log n + q log q)
- * Space Complexity: O(n)
- */
-function maxProfitAssignment(
-  difficulty: number[],
-  profit: number[],
-  worker: number[]
-): number {
-  const jobs: number[][] = [];
-  for (let i = 0; i < difficulty.length; i++)
-    jobs.push([difficulty[i], profit[i]]);
-  worker.sort((a, b) => a - b);
-  jobs.sort((a, b) => a[0] - b[0]);
-  let job = 0,
-    curMaxProfit = 0,
-    totalProfit = 0;
-  for (let i = 0; i < worker.length; i++) {
-    while (job < jobs.length && worker[i] >= jobs[job][0]) {
-      curMaxProfit = Math.max(curMaxProfit, jobs[job][1]);
-      job++;
-    }
-    totalProfit += curMaxProfit;
-  }
-  return totalProfit;
-}
-
-/*
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 1005. Maximize Sum Of Array After K Negations
  * Time Complexity: O(n log n)
  * Space Complexity: O(1)
@@ -192,7 +162,7 @@ function largestSumAfterKNegations(nums: number[], k: number): number {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 561. Array Partition
  * Time Complexity: O(n log n)
  * Space Complexity: O(1)
@@ -205,6 +175,7 @@ function arrayPairSum(nums: number[]): number {
 }
 
 /**
+ * LeetCode Problem (Easy):
  * 976. Largest Perimeter Triangle
  * Time Complexity: O(n log n)
  * Space Complexity: O(1)
@@ -221,7 +192,7 @@ function largestPerimeter(nums: number[]): number {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 1200. Minimum Absolute Difference
  * Time Complexity: O(n log n)
  * Space Complexity: O(1)
@@ -235,4 +206,33 @@ function minimumAbsDifference(arr: number[]): number[][] {
   for (let i = 1; i < arr.length; i++)
     if (arr[i] - arr[i - 1] === minDif) answer.push([arr[i - 1], arr[i]]);
   return answer;
+}
+
+/*
+ * LeetCode Problem (Medium):
+ * 826. Most Profit Assigning Work
+ * Time Complexity: O(n log n + q log q)
+ * Space Complexity: O(n)
+ */
+function maxProfitAssignment(
+  difficulty: number[],
+  profit: number[],
+  worker: number[]
+): number {
+  const jobs: number[][] = [];
+  for (let i = 0; i < difficulty.length; i++)
+    jobs.push([difficulty[i], profit[i]]);
+  worker.sort((a, b) => a - b);
+  jobs.sort((a, b) => a[0] - b[0]);
+  let job = 0,
+    curMaxProfit = 0,
+    totalProfit = 0;
+  for (let i = 0; i < worker.length; i++) {
+    while (job < jobs.length && worker[i] >= jobs[job][0]) {
+      curMaxProfit = Math.max(curMaxProfit, jobs[job][1]);
+      job++;
+    }
+    totalProfit += curMaxProfit;
+  }
+  return totalProfit;
 }

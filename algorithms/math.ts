@@ -1,6 +1,6 @@
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 441. Arranging Coins
  * Time Complexity: O(log n)
  * Space Complexity: O(1)
@@ -15,7 +15,7 @@ function arrangeCoins(n: number): number {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 1523. Count Odd Numbers in an Interval Range
  * Time Complexity: O(1)
  * Space Complexity: O(1)
@@ -33,7 +33,7 @@ function countOdds(low: number, high: number): number {
 
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 441. Arranging Coins
  * Time Complexity: O(n)
  * Space Complexity: O(1)
@@ -50,7 +50,7 @@ function average(salary: number[]): number {
 
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 1281. Subtract the Product and Sum of Digits of an Integer
  * Time Complexity: O(n)
  * Space Complexity: O(1)
@@ -67,7 +67,7 @@ function subtractProductAndSum(n: number): number {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 202. Happy Number
  * Time Complexity: O(log n)
  * Space Complexity: O(1)
@@ -90,7 +90,7 @@ function isHappy(n: number): boolean {
 }
 
 /**
- * LeetCode Problem:
+ * LeetCode Problem (Easy):
  * 191. Number of 1 Bits
  * Time Complexity: O(k)
  * Space Complexity: O(1)
