@@ -1,5 +1,27 @@
 /**
  * LeetCode Problem (Easy):
+ * 387. First Unique Character in a String
+ * Time Complexity: O(n)
+ * Space Complexity: O(k)
+ */
+function firstUniqChar(s: string): number {
+  let chars = new Map<string, string>();
+  let answers = new Map<string, number>();
+  for (let i = 0; i < s.length; i++) {
+    let curChar = s[i];
+    if (chars.has(curChar)) {
+      answers.delete(curChar)
+    } else {
+      chars.set(curChar, curChar);
+      answers.set(curChar, i)
+    }
+  }
+  return answers.size ? answers.values().next().value : -1;
+}
+
+
+/**
+ * LeetCode Problem (Easy):
  * 459. Repeated Substring Pattern
  * Time Complexity: O(n)
  * Space Complexity: O(n)

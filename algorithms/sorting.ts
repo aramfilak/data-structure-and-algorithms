@@ -107,14 +107,17 @@ function insertionSort(array: number[]): void {
  * Space Complexity: : O(1)
  * @param array
  */
-function selectionSort(array: number[]): void {
+function selectionSort(array: number[]) {
   for (let i = 0; i < array.length - 1; i++) {
     let minIndex = i;
-    for (let j = 1 + i; j < array.length; j++)
+    for (let j = 1 + i; j < array.length; j++) {
       if (array[j] < array[minIndex]) minIndex = j;
-    if (minIndex !== i)
+    }
+    if (minIndex !== i) {
       [array[i], array[minIndex]] = [array[minIndex], array[i]];
+    }
   }
+  return array;
 }
 
 /**
@@ -134,6 +137,7 @@ function bubbleSort(array: number[]): void {
 /***************************************************************
  >>>>> Challenges can be solved easier if array is sorted <<<<<<
  ***************************************************************/
+
 /*
  * LeetCode Problem (Easy):
  * 1005. Maximize Sum Of Array After K Negations
