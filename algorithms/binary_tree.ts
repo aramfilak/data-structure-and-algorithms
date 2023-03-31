@@ -126,3 +126,26 @@ function levelOrder(root: TreeNode | null): number[][] {
   }
   return result;
 }
+
+/**
+ * LeetCode Problem (Medium):
+ * 104. Maximum Depth of Binary Tree
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ */
+function maxDepth(root: TreeNode | null): number {
+  let  depth: number  = 0;
+  if (!root) return depth;
+  const queue: TreeNode[] = [root];
+  while (queue.length) {
+    const level: number[] = [];
+    const levelSize: number = queue.length;
+    for (let i = 0; i < levelSize; i++) {
+      const {left, right} = queue.shift()!;
+      if (left) queue.push(left);
+      if (right) queue.push(right);
+    }
+    depth++;
+  }
+  return depth ;
+}
