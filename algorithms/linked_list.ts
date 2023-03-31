@@ -2,7 +2,7 @@
  >>>>>>>>>>>>>>>>>>>>>> LinkedList <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
  ***************************************************************/
 class ListNode {
-  val: number
+  val: any
   next: ListNode | null
 
   constructor(val?: number, next?: ListNode | null) {
