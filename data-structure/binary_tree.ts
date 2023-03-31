@@ -59,8 +59,13 @@ class BinaryTree {
 
   }
 
-  public search(val: number) {
-
+  public search(val: number): boolean | undefined  {
+    function find(node: TreeNode | null, target: number): boolean | undefined {
+      if (!node) return;
+      if (node.val === target) return true;
+      return find(node.left, target) || find(node.right, target);
+    }
+    return !(find(this.root, val)===undefined);
   }
 
   /**
@@ -133,7 +138,7 @@ class BinaryTree {
     if (!this.root) return levels;
     const queue: TreeNode[] = [this.root];
     while (queue.length) {
-       let cur =  queue.shift()!;
+      let cur = queue.shift()!;
       levels.push(cur.val);
       if (cur.left) queue.push(cur.left);
       if (cur.right) queue.push(cur.right);
@@ -143,15 +148,15 @@ class BinaryTree {
 
 }
 
-// let tree = new BinaryTree(1);
-//  tree.insert(20)
-//  tree.insert(10)
-//  tree.insert(11)
-//  tree.insert(6)
-//  tree.insert(2)
-//  tree.insert(25)
-//  tree.insert(30)
-//  tree.insert(4)
-// console.log(tree.levelOrder())
-//
-// console.log(tree.size)
+let tree = new BinaryTree(1);
+tree.insert(20)
+tree.insert(10)
+tree.insert(11)
+tree.insert(6)
+tree.insert(2)
+tree.insert(25)
+tree.insert(30)
+tree.insert(4)
+console.log(tree.levelOrder())
+
+console.log(tree.search(555))
