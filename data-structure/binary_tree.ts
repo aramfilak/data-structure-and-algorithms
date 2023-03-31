@@ -142,3 +142,32 @@ class BinaryTree {
   }
 
 }
+
+let tree = new BinaryTree(1);
+ tree.insert(20)
+ tree.insert(10)
+ tree.insert(11)
+ tree.insert(6)
+ tree.insert(2)
+ tree.insert(25)
+ tree.insert(30)
+ tree.insert(4)
+console.log(tree.levelOrder())
+
+console.log(tree.size)
+function maxDepth(root: TreeNode | null): number {
+  let  depth: number  = 0;
+  if (!root) return depth;
+  const queue: TreeNode[] = [root];
+  while (queue.length) {
+    const level: number[] = [];
+    const levelSize: number = queue.length;
+    for (let i = 0; i < levelSize; i++) {
+      const {left, right} = queue.shift()!;
+      if (left) queue.push(left);
+      if (right) queue.push(right);
+    }
+    depth++;
+  }
+  return depth ;
+}

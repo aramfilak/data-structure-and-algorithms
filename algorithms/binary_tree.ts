@@ -18,18 +18,15 @@ class TreeNode {
  * Space Complexity: O(h)
  */
 function preorderTraversal(root: TreeNode | null): number[] {
-
   const preorderValues: number[] = [];
   let cur: TreeNode | null = root;
   if (!cur) return [];
-
   function traverse(cur: TreeNode | null): void {
     if (!cur) return;
     preorderValues.push(cur.val);
     traverse(cur.left);
     traverse(cur.right);
   }
-
   traverse(cur);
   return preorderValues;
 }
@@ -45,14 +42,12 @@ function inorderTraversal(root: TreeNode | null): number[] {
   const inorderValues: number[] = [];
   let cur: TreeNode | null = root;
   if (!cur) return [];
-
   function traverse(cur: TreeNode | null): void {
     if (!cur) return;
     traverse(cur.left);
     inorderValues.push(cur.val);
     traverse(cur.right);
   }
-
   traverse(cur);
   return inorderValues;
 }
@@ -69,14 +64,12 @@ function postorderTraversal(root: TreeNode | null): number[] {
   const postorderValues: number[] = [];
   let cur: TreeNode | null = root;
   if (!cur) return [];
-
   function traverse(cur: TreeNode | null): void {
     if (!cur) return;
     traverse(cur.left);
     traverse(cur.right);
     postorderValues.push(cur.val);
   }
-
   traverse(cur);
   return postorderValues;
 }
