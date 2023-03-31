@@ -1,5 +1,26 @@
 /**
  * LeetCode Problem (Easy):
+ * 383. Ransom Note
+ * Time Complexity: O(n+m)
+ * Space Complexity: O(m)
+ */
+function canConstruct(ransomNote: string, magazine: string): boolean {
+  let magazineChars = new Map<string, number>();
+  for (const char of magazine) {
+    if (magazineChars.has(char))
+      magazineChars.set(char, magazineChars.get(char)! + 1)
+    else magazineChars.set(char, 1);
+  }
+  for (const char of ransomNote) {
+    if (magazineChars.get(char))
+      magazineChars.set(char, magazineChars.get(char)! - 1)
+    else return false
+  }
+  return true
+}
+
+/**
+ * LeetCode Problem (Easy):
  * 387. First Unique Character in a String
  * Time Complexity: O(n)
  * Space Complexity: O(k)
@@ -18,7 +39,6 @@ function firstUniqChar(s: string): number {
   }
   return answers.size ? answers.values().next().value : -1;
 }
-
 
 /**
  * LeetCode Problem (Easy):
