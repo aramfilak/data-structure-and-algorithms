@@ -21,12 +21,14 @@ function preorderTraversal(root: TreeNode | null): number[] {
   const preorderValues: number[] = [];
   let cur: TreeNode | null = root;
   if (!cur) return [];
+
   function traverse(cur: TreeNode | null): void {
     if (!cur) return;
     preorderValues.push(cur.val);
     traverse(cur.left);
     traverse(cur.right);
   }
+
   traverse(cur);
   return preorderValues;
 }
@@ -42,12 +44,14 @@ function inorderTraversal(root: TreeNode | null): number[] {
   const inorderValues: number[] = [];
   let cur: TreeNode | null = root;
   if (!cur) return [];
+
   function traverse(cur: TreeNode | null): void {
     if (!cur) return;
     traverse(cur.left);
     inorderValues.push(cur.val);
     traverse(cur.right);
   }
+
   traverse(cur);
   return inorderValues;
 }
@@ -64,16 +68,43 @@ function postorderTraversal(root: TreeNode | null): number[] {
   const postorderValues: number[] = [];
   let cur: TreeNode | null = root;
   if (!cur) return [];
+
   function traverse(cur: TreeNode | null): void {
     if (!cur) return;
     traverse(cur.left);
     traverse(cur.right);
     postorderValues.push(cur.val);
   }
+
   traverse(cur);
   return postorderValues;
 }
 
+/**
+ * LeetCode Problem (Easy):
+ * 404. Sum of Left Leaves
+ * Time Complexity: O(n)
+ * Space Complexity: O(h)
+ */
+
+function sumOfLeftLeaves(root: TreeNode | null): number {
+  let sum: number = 0;
+  if (!root) return sum;
+  const stack: [TreeNode, boolean][] = [[root, false]];
+  while (stack.length) {
+    const [node, isLeft] = stack.pop()!;
+    if (node.left) {
+      stack.push([node.left, true]);
+    }
+    if (node.right) {
+      stack.push([node.right, false]);
+    }
+    if (!node.left && !node.right && isLeft) {
+      sum += node.val;
+    }
+  }
+  return sum;
+}
 /**
  * LeetCode Problem (Medium):
  * 701. Insert into a Binary Search Tree
@@ -134,7 +165,7 @@ function levelOrder(root: TreeNode | null): number[][] {
  * Space Complexity: O(n)
  */
 function maxDepth(root: TreeNode | null): number {
-  let  depth: number  = 0;
+  let depth: number = 0;
   if (!root) return depth;
   const queue: TreeNode[] = [root];
   while (queue.length) {
@@ -147,5 +178,6 @@ function maxDepth(root: TreeNode | null): number {
     }
     depth++;
   }
-  return depth ;
+  return depth;
 }
+
