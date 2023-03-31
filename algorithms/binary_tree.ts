@@ -109,3 +109,27 @@ function insertIntoBST(root: TreeNode | null, val: number): TreeNode | null {
   }
   return root;
 }
+
+/**
+ * LeetCode Problem (Medium):
+ * 102. Binary Tree Level Order Traversal
+ * Time Complexity: O(n)
+ * Space Complexity: O(1)
+ */
+function levelOrder(root: TreeNode | null): number[][] {
+  const result: number[][] = [];
+  if (!root) return result;
+  const queue: TreeNode[] = [root];
+  while (queue.length) {
+    const level: number[] = [];
+    const levelSize: number = queue.length;
+    for (let i = 0; i < levelSize; i++) {
+      const {val, left, right} = queue.shift()!;
+      level.push(val);
+      if (left) queue.push(left);
+      if (right) queue.push(right);
+    }
+    result.push(level);
+  }
+  return result;
+}

@@ -30,7 +30,7 @@ class BinaryTree {
    * Inserts a new node with the given value in the binary tree.
    */
   public insert(val: number): void {
-    if(!this.root) return;
+    if (!this.root) return;
     const newNode: TreeNode = new TreeNode(val);
     let cur: TreeNode | null = this.root;
     while (true) {
@@ -49,7 +49,9 @@ class BinaryTree {
         }
       }
     }
+    this.size++;
   }
+
   /**
    *  Deletes a node with the given value from the binary tree.
    */
@@ -65,7 +67,7 @@ class BinaryTree {
    * Traverses the binary tree in preorder
    * traversal and returns a list of node values.
    */
- public preorderTraversal(): number[] {
+  public preorderTraversal(): number[] {
     const preorderValues: number[] = [];
     let cur: TreeNode | null = this.root;
     if (!cur) return [];
@@ -127,8 +129,16 @@ class BinaryTree {
    *  traversal and returns a list of node values.
    */
   public levelOrder(): number[] {
-
-    return [];
+    let levels: number[] = [];
+    if (!this.root) return levels;
+    const queue: TreeNode[] = [this.root];
+    while (queue.length) {
+       let cur =  queue.shift()!;
+      levels.push(cur.val);
+      if (cur.left) queue.push(cur.left);
+      if (cur.right) queue.push(cur.right);
+    }
+    return levels;
   }
-}
 
+}
