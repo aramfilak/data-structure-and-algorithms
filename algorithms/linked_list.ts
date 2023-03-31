@@ -18,21 +18,17 @@ class ListNode {
  * Space Complexity: O(n)
  */
 function hasCycle(head: ListNode | null): boolean {
-  if(!head?.next) return false
-  let cur: ListNode | null = head;
-  let next: ListNode | null | undefined = head?.next;
-  let pointers = new Map<ListNode, ListNode>
+  let cur = head;
+  let pointers = new Map<ListNode,ListNode>();
   while (cur) {
-    if (cur.next===next) return true;
+    if(pointers.has(cur)) return true;
     else {
-      pointers.set(cur, cur)
+      pointers.set(cur,cur)
       cur = cur.next
-      next = next?.next
     }
   }
   return false;
 }
-
 /**
  * LeetCode Problem (Medium):
  * 2. Add Two Numbers
