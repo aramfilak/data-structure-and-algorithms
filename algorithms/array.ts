@@ -1,5 +1,24 @@
 /**
  * LeetCode Problem (Easy):
+ * 1232. Check If It Is a Straight Line * Time Complexity: O(n)
+ * Space Complexity: O(1)
+ */
+function checkStraightLine(coordinates: number[][]): boolean {
+  const [x1, y1] = coordinates[0];
+  const [x2, y2] = coordinates[1];
+  const diffX = x2 - x1;
+  const diffY = y2 - y1;
+  for (let i = 2; i < coordinates.length; i++) {
+    const [x, y] = coordinates[i];
+    if (diffX * (y - y2) !== diffY * (x - x2)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+/**
+ * LeetCode Problem (Easy):
  * 1779. Find Nearest Point That Has the Same X or Y Coordinate
  * Time Complexity: O(n)
  * Space Complexity: O(1)
@@ -103,18 +122,3 @@ function intersect(nums1: number[], nums2: number[]): number[] {
   return ans;
 }
 
-/**
- * LeetCode Problem (Medium):
- * 53. Maximum Subarray
- * Time Complexity: O(n)
- * Space Complexity: O(1)
- */
-function maxSubArray(nums: number[]): number {
-  let max = nums[0], sum = 0;
-  for (let i = 0; i < nums.length; i++) {
-    if (sum < 0) sum = 0;
-    sum += nums[i];
-    max = Math.max(max, sum);
-  }
-  return max;
-}
