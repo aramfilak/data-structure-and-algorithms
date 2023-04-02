@@ -1,3 +1,34 @@
+/**
+ * LeetCode Problem (Easy):
+ * 28. Find the Index of the First Occurrence in a String
+ * Time Complexity: O(m)
+ * Space Complexity: O(m)
+ */
+function strStr(text: string, pattern: string): number {
+  const n: number = text.length,
+    m: number = pattern.length,
+    pi: number[] = new Array(m).fill(0);
+  let j: number = 0;
+  for (let i = 1; i < m; i++) {
+    while (j > 0 && pattern[i] !== pattern[j]) j = pi[j - 1];
+    if (pattern[i] === pattern[j]) j++;
+    pi[i] = j;
+  }
+  j = 0;
+  for (let i = 0; i < n; i++) {
+    while (j > 0 && text[i] !== pattern[j]) j = pi[j - 1];
+    if (text[i] === pattern[j]) j++;
+    if (j === m) return i - m + 1;
+  }
+  return -1;
+}
+
+/**
+ * LeetCode Problem (Easy):
+ * 709. To Lower Case
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ */
 function toLowerCase(s: string): string {
 
   let lower: string = "abcdefghijklmnopqrstuvwxyz"
@@ -14,33 +45,6 @@ function toLowerCase(s: string): string {
     }
   }
   return ans;
-}
-/**
- * LeetCode Problem (Easy):
- * 28. Find the Index of the First Occurrence in a String
- * Time Complexity: O(m)
- * Space Complexity: O(m)
- */
-function strStr(text: string, pattern: string): number {
-
-  const n = text.length;
-  const m = pattern.length;
-  const pi = new Array(m).fill(0);
-  let j = 0;
-
-  for (let i = 1; i < m; i++) {
-    while (j > 0 && pattern[i] !== pattern[j])  j = pi[j - 1];
-    if (pattern[i] === pattern[j]) j++;
-    pi[i] = j;
-  }
-
-  j = 0;
-  for (let i = 0; i < n; i++) {
-    while (j > 0 && text[i] !== pattern[j]) j = pi[j - 1];
-    if (text[i] === pattern[j]) j++;
-    if (j === m)   return i - m + 1;
-  }
-  return -1;
 }
 
 /**
