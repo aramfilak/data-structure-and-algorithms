@@ -4,23 +4,23 @@
  */
 
 class QueueNode {
-  next: QueueNode | null
-  val: any
+  next: QueueNode | null;
+  val: any;
 
   constructor(val: any) {
     this.val = val;
-    this.next = null
+    this.next = null;
   }
 }
 
 class MyQueue {
-  head: QueueNode | null
+  head: QueueNode | null;
   size = 0;
 
-  constructor() {
-  }
+  constructor() {}
 
-  push(val: number): void {   // O(n)
+  push(val: number): void {
+    // O(n)
     let newNode: QueueNode | null = new QueueNode(val);
     if (!this.head) {
       this.head = newNode;
@@ -39,8 +39,8 @@ class MyQueue {
     }
   }
 
-
-  pop(): number {  // O(1)
+  pop(): number | null {
+    // O(1)
     if (!this.head) return null;
     let headVal: number = this.head.val;
     if (!this.head.next) {
@@ -50,17 +50,18 @@ class MyQueue {
     } else {
       this.head = this.head.next;
       this.size--;
-      return headVal
+      return headVal;
     }
   }
 
-  peek(): number { // O(1)
+  peek(): number | null {
+    // O(1)
     if (!this.head) return null;
     return this.head.val;
   }
 
-
-  empty(): boolean {  // O(1)
+  empty(): boolean {
+    // O(1)
     return this.size === 0;
   }
 }
@@ -74,4 +75,3 @@ class MyQueue {
  * var param_3 = obj.peek()
  * var param_4 = obj.empty()
  */
-

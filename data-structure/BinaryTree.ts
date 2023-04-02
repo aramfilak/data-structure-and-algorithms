@@ -59,13 +59,14 @@ class BinaryTree {
 
   }
 
-  public search(val: number): boolean | undefined  {
+  public search(val: number): boolean | undefined {
     function find(node: TreeNode | null, target: number): boolean | undefined {
       if (!node) return;
       if (node.val === target) return true;
       return find(node.left, target) || find(node.right, target);
     }
-    return !(find(this.root, val)===undefined);
+
+    return !(find(this.root, val) === undefined);
   }
 
   /**
