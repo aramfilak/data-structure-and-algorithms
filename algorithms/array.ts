@@ -4,7 +4,6 @@
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  */
-
 function nextGreaterElement(nums1: number[], nums2: number[]): number[] {
   const ans: number[] = [], stk: number[] = [];
   const map: Map<number, number> = new Map();

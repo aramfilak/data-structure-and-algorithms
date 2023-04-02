@@ -2,7 +2,6 @@
  * LeetCode Problem (Easy):
  * 232. Implement Queue using Stacks
  */
-
 class QueueNode {
   next: QueueNode | null;
   val: any;
@@ -21,8 +20,8 @@ class MyQueue {
     this.head = null;
   }
 
-  // O(n)
   push(val: number): void {
+    // O(n)
     let newNode: QueueNode | null = new QueueNode(val);
     if (!this.head) {
       this.head = newNode;
@@ -41,29 +40,23 @@ class MyQueue {
     }
   }
 
-  // O(1)
   pop(): number | null {
+    // O(1)
     if (!this.head) return null;
     let headVal: number = this.head.val;
-    if (!this.head.next) {
-      this.head = null;
-      this.size--;
-      return headVal;
-    } else {
-      this.head = this.head.next;
-      this.size--;
-      return headVal;
-    }
+    this.head = this.head.next;
+    this.size--;
+    return headVal;
   }
 
-  // O(1)
   peek(): number | null {
+    // O(1)
     if (!this.head) return null;
     return this.head.val;
   }
 
-  // O(1)
   empty(): boolean {
+    // O(1)
     return this.size === 0;
   }
 }
