@@ -15,9 +15,11 @@ class QueueNode {
 
 class MyQueue {
   head: QueueNode | null;
-  size = 0;
+  size: number = 0;
 
-  constructor() {}
+  constructor() {
+    this.head = null;
+  }
 
   push(val: number): void {
     // O(n)
@@ -75,3 +77,14 @@ class MyQueue {
  * var param_3 = obj.peek()
  * var param_4 = obj.empty()
  */
+const q: MyQueue = new MyQueue();
+q.push(50)
+q.push(30)
+q.push(90)
+q.push(40)
+q.push(100)
+console.log(q.size)
+console.log(q.peek())
+console.log(q.empty())
+console.log(q.pop())
+console.log(q.size)
