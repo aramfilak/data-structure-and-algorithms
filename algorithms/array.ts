@@ -1,6 +1,31 @@
 /**
  * LeetCode Problem (Easy):
+ * 496. Next Greater Element I
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ */
+
+function nextGreaterElement(nums1: number[], nums2: number[]): number[] {
+  const ans: number[] = [], stk: number[] = [];
+  const map: Map<number, number> = new Map();
+  for (let i = 0; i < nums2.length; i++) {
+    const cur: number = nums2[i];
+    while (stk.length && cur > stk.at(-1)!) {
+      map.set(stk.pop()!, cur);
+    }
+    stk.push(cur);
+    map.set(cur, -1)
+  }
+  for (const num of nums1) {
+    ans.push(map.get(num)!)
+  }
+  return ans;
+}
+
+/**
+ * LeetCode Problem (Easy):
  * 1232. Check If It Is a Straight Line * Time Complexity: O(n)
+ * Time Complexity: O(n)
  * Space Complexity: O(1)
  */
 function checkStraightLine(coordinates: number[][]): boolean {

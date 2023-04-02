@@ -15,14 +15,14 @@ class QueueNode {
 
 class MyQueue {
   head: QueueNode | null;
-  size: number = 0;
+  size = 0;
 
   constructor() {
     this.head = null;
   }
 
+  // O(n)
   push(val: number): void {
-    // O(n)
     let newNode: QueueNode | null = new QueueNode(val);
     if (!this.head) {
       this.head = newNode;
@@ -41,8 +41,8 @@ class MyQueue {
     }
   }
 
+  // O(1)
   pop(): number | null {
-    // O(1)
     if (!this.head) return null;
     let headVal: number = this.head.val;
     if (!this.head.next) {
@@ -56,18 +56,27 @@ class MyQueue {
     }
   }
 
+  // O(1)
   peek(): number | null {
-    // O(1)
     if (!this.head) return null;
     return this.head.val;
   }
 
+  // O(1)
   empty(): boolean {
-    // O(1)
     return this.size === 0;
   }
 }
 
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * var obj = new MyQueue()
+ * obj.push(x)
+ * var param_2 = obj.pop()
+ * var param_3 = obj.peek()
+ * var param_4 = obj.empty()
+ */
 
 /**
  * Your MyQueue object will be instantiated and called as such:
