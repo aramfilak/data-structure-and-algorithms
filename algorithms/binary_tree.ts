@@ -136,6 +136,19 @@ function isSameTree(first: TreeNode | null, second: TreeNode | null): boolean {
     && isSameTree(first?.right, second.right);
 
 }
+
+/**
+ * LeetCode Problem (Easy):
+ * 938. Range Sum of BST
+ * Time Complexity: O(n)
+ * Space Complexity: O(h)
+ */
+
+function rangeSumBST(root: TreeNode | null, low: number, high: number): number {
+    if (!root) return 0;
+    return  (root.val >= low && root.val <= high ? root.val : 0)
+      + rangeSumBST(root.left, low, high) + rangeSumBST(root.right, low, high)
+}
 /**
  * LeetCode Problem (Medium):
  * 701. Insert into a Binary Search Tree
