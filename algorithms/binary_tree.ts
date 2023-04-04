@@ -105,6 +105,22 @@ function sumOfLeftLeaves(root: TreeNode | null): number {
   }
   return sum;
 }
+
+/**
+ * LeetCode Problem (Easy):
+ * 101. Symmetric Tree
+ * Time Complexity: O(n)
+ * Space Complexity: O(h)
+ */
+function isSymmetric(root: TreeNode | null): boolean {
+  return isMirror(root, root);
+  function isMirror(left: TreeNode | null, right: TreeNode | null): boolean {
+    if (!left && !right) return true;
+    if (!right || !left) return false;
+    return left.val === right.val && isMirror(left.left, right.right) && isMirror(left.right, right.left)
+  }
+}
+
 /**
  * LeetCode Problem (Medium):
  * 701. Insert into a Binary Search Tree
