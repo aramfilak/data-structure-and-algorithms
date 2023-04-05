@@ -145,10 +145,32 @@ function isSameTree(first: TreeNode | null, second: TreeNode | null): boolean {
  */
 
 function rangeSumBST(root: TreeNode | null, low: number, high: number): number {
-    if (!root) return 0;
-    return  (root.val >= low && root.val <= high ? root.val : 0)
-      + rangeSumBST(root.left, low, high) + rangeSumBST(root.right, low, high)
+  if (!root) return 0;
+  return (root.val >= low && root.val <= high ? root.val : 0)
+    + rangeSumBST(root.left, low, high) + rangeSumBST(root.right, low, high)
 }
+
+/**
+ * LeetCode Problem (Easy):
+ * 226. Invert Binary Tree
+ * Time Complexity: O(n)
+ * Space Complexity: O(h)
+ */
+
+function invertTree(root: TreeNode | null): TreeNode | null {
+  if (!root) return root;
+  dfs(root);
+
+  function dfs(root: TreeNode | null): void {
+    if (!root?.left && !root?.right) return;
+    [root!.left!.val, root!.right!.val] = [root!.right!.val, root!.left!.val];
+    if (root.left) dfs(root.left)
+    if (root.right) dfs(root.right)
+  }
+
+  return root
+}
+
 /**
  * LeetCode Problem (Medium):
  * 701. Insert into a Binary Search Tree
