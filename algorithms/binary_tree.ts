@@ -172,6 +172,19 @@ function invertTree(root: TreeNode | null): TreeNode | null {
 }
 
 /**
+ * LeetCode Problem (Easy):
+ * 112. Path Sum
+ * Time Complexity: O(n)
+ * Space Complexity: O(h)
+ */
+function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
+  if (!root) return false;
+  if (!root.left && !root.right) return targetSum === root.val;
+  return hasPathSum(root.left, targetSum - root.val) ||
+    hasPathSum(root.right, targetSum - root.val)
+}
+
+/**
  * LeetCode Problem (Medium):
  * 701. Insert into a Binary Search Tree
  * Time Complexity: O(n)
