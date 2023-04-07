@@ -34,7 +34,6 @@ class BrowserHistory {
 
   }
 
-  // O(1)
   visit(url: string): void {
     const newPage: DoublyLinkedListNode = new DoublyLinkedListNode(url);
     newPage.prev = this.curPosition;
@@ -42,7 +41,6 @@ class BrowserHistory {
     this.curPosition = newPage;
     this.size++;
   }
-
 
   back(steps: number): string {
 

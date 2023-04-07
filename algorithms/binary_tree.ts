@@ -1,4 +1,8 @@
 //  Definition for a binary tree node.
+import {resolveObjectURL} from "buffer";
+import * as querystring from "querystring";
+import * as trace_events from "trace_events";
+
 class TreeNode {
   val: number
   left: TreeNode | null
@@ -78,6 +82,21 @@ function postorderTraversal(root: TreeNode | null): number[] {
 
   traverse(cur);
   return postorderValues;
+}
+
+/**
+ * LeetCode Problem (Easy):
+ * 700. Search in a Binary Search Tree
+ * Time Complexity: O(n)
+ * Space Complexity: O(h)
+ */
+function searchBST(root: TreeNode | null, val: number): TreeNode | null {
+  while (root) {
+    if (val === root.val) return root;
+    if (val < root.val) root = root.left;
+    else root = root.right;
+  }
+  return null;
 }
 
 /**
@@ -185,6 +204,28 @@ function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
 }
 
 /**
+ * LeetCode Problem (Easy):
+ * 653. Two Sum IV - Input is a BST
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ */
+
+function findTarget(root: TreeNode | null, k: number): boolean {
+  const set = new Set<number>();
+
+  function twoSumDFS(root: TreeNode | null, k: number): boolean {
+    if (!root) return false;
+    if (set.has(k - root.val)) {
+      return true;
+    }
+    set.add(root.val);
+    return twoSumDFS(root.left, k) || twoSumDFS(root.right, k);
+  }
+
+  return twoSumDFS(root, k);
+}
+
+/**
  * LeetCode Problem (Medium):
  * 701. Insert into a Binary Search Tree
  * Time Complexity: O(n)
@@ -248,7 +289,6 @@ function maxDepth(root: TreeNode | null): number {
   if (!root) return depth;
   const queue: TreeNode[] = [root];
   while (queue.length) {
-    const level: number[] = [];
     const levelSize: number = queue.length;
     for (let i = 0; i < levelSize; i++) {
       const {left, right} = queue.shift()!;
@@ -260,3 +300,39 @@ function maxDepth(root: TreeNode | null): number {
   return depth;
 }
 
+/**
+ * LeetCode Problem (Medium):
+ * 235. Lowest Common Ancestor of a Binary Search Tree
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ */
+
+function lowestCommonAncestor(root: TreeNode | null, p: TreeNode | null, q: TreeNode | null): TreeNode | null {
+  if (!root) return null;
+  let qPath: TreeNode[] = [], pPath: TreeNode[] = []
+  if (q) qPath = findPathToTargetNode(root, q);
+  if (p) pPath = findPathToTargetNode(root, p);
+  function findPathToTargetNode(root: TreeNode | null, target: TreeNode): TreeNode[] {
+    const path: TreeNode[] = [];
+    let cur: TreeNode | null = root;
+    while (cur) {
+      path.push(cur)
+      if (cur.val === target?.val) break;
+      if (target?.val < cur.val) {
+        cur = cur.left;
+      } else {
+        cur = cur.right;
+      }
+    }
+    return path;
+  }
+  let i = 0;
+  let minLen = Math.min(qPath.length,pPath.length) ;
+  let ans:  TreeNode | null = null
+  while (qPath[i] === pPath[i] && i < minLen) {
+    ans = qPath[i];
+    i++;
+  }
+
+  return ans;
+}

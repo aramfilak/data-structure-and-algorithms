@@ -5,13 +5,14 @@
  * Space Complexity: O(1)
  */
 function diagonalSum(mat: number[][]): number {
-  let sum :number = 0;
-  for (let i = 0, j = mat.length -1; i < mat.length; i++,j-- ) {
-    sum+=mat[i][i]
-    if(i!==j)sum+=mat[i][j];
+  let sum: number = 0;
+  for (let i = 0, j = mat.length - 1; i < mat.length; i++, j--) {
+    sum += mat[i][i]
+    if (i !== j) sum += mat[i][j];
   }
   return sum;
 }
+
 /**
  * LeetCode Problem (Easy):
  * 2319. Check if Matrix Is X-Matrix
