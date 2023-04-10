@@ -21,18 +21,19 @@ class Entry<K, V> {
 		this.next = null;
 	}
 }
+
 class MyHashMap<K, V> {
 	private readonly SIZE = 1000;
 	private table: Array<Entry<K, V> | null>;
 	constructor() {
-		this.table = new Array(this.SIZE);
+		this.table = Array<Entry<K, V> | null>(this.SIZE);
 	}
 	private hash(key: K): number {
 		return Number(key) % this.SIZE;
 	}
 	public put(key: K, value: V): void {
 		const index = this.hash(key);
-		let entry = this.table[index];
+		let entry: Entry<K, V> | null = this.table[index];
 		while (entry) {
 			if (entry.key === key) {
 				entry.value = value;
@@ -64,10 +65,12 @@ class MyHashMap<K, V> {
 				if (previous === null) {
 					this.table[index] = entry.next;
 				} else {
+					//@ts-ignore
 					previous.next = entry.next;
 				}
 				return;
 			}
+			//@ts-ignore
 			previous = entry;
 			entry = entry.next;
 		}
