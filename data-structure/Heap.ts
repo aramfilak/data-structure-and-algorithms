@@ -1,7 +1,9 @@
 class MinHeap {
-	items: number[] = [];
+	items: number[];
 
-	constructor() {}
+	constructor() {
+		this.items = [];
+	}
 
 	private getLeftChildIndex(parentIndex: number): number {
 		return 2 * parentIndex + 1;
