@@ -221,6 +221,39 @@ function areAlmostEqual(s1: string, s2: string): boolean {
 }
 
 /**
+ * LeetCode Problem (Easy):
+ * 953. Verifying an Alien Dictionary
+ * Time Complexity: O(m*n)
+ * Space Complexity: O(k)
+ */
+function isAlienSorted(words: string[], order: string): boolean {
+	const alphabet: Map<string, number> = new Map<string, number>();
+	let inOrder = false;
+	for (let i = 0; i < order.length; i++) alphabet.set(order[i], i);
+
+	for (let i = 0; i < words.length - 1; i++) {
+		const word1 = words[i];
+		const word2 = words[i + 1];
+
+		for (let j = 0; j < Math.min(word1.length, word2.length); j++) {
+			const word1Char = words[i][j];
+			const word1CharOrder = alphabet.get(word1Char)!;
+			const word2Char = words[i + 1][j];
+			const word2CharOrder = alphabet.get(word2Char)!;
+			inOrder = false;
+			if (word1Char !== word2Char && word1CharOrder < word2CharOrder) {
+				inOrder = true;
+				break;
+			}
+			if (word1Char !== word2Char && word1CharOrder > word2CharOrder) return false;
+		}
+		if (word2.length < word1.length && !inOrder) return false;
+	}
+
+	return true;
+}
+
+/**
  * LeetCode Problem (Medium):
  * 12. Integer to Roman
  * Time Complexity: O(1)
