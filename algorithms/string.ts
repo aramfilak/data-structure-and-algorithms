@@ -254,6 +254,30 @@ function isAlienSorted(words: string[], order: string): boolean {
 }
 
 /**
+ * LeetCode Problem (Easy):
+ * 290. Word Pattern
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ */
+
+function wordPattern(pattern: string, s: string): boolean {
+	const patternMap: Map<string, number> = new Map<string, number>();
+	const sMap: Map<string, number> = new Map<string, number>();
+	const splitS = s.split(" ");
+	if (pattern.length !== splitS.length) return false;
+	for (let i = 0; i < pattern.length; i++) {
+		if (!patternMap.has(pattern[i])) patternMap.set(pattern[i], i);
+		if (!sMap.has(splitS[i])) sMap.set(splitS[i], i);
+	}
+	for (let i = 0; i < pattern.length; i++) {
+		if (sMap.get(splitS[i])! !== patternMap.get(pattern[i])!) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/**
  * LeetCode Problem (Medium):
  * 12. Integer to Roman
  * Time Complexity: O(1)
