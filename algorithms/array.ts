@@ -5,7 +5,8 @@
  * Space Complexity: O(n)
  */
 function nextGreaterElement(nums1: number[], nums2: number[]): number[] {
-  const ans: number[] = [], stk: number[] = [];
+  const ans: number[] = [],
+    stk: number[] = [];
   const map: Map<number, number> = new Map();
   for (let i = 0; i < nums2.length; i++) {
     const cur: number = nums2[i];
@@ -13,10 +14,10 @@ function nextGreaterElement(nums1: number[], nums2: number[]): number[] {
       map.set(stk.pop()!, cur);
     }
     stk.push(cur);
-    map.set(cur, -1)
+    map.set(cur, -1);
   }
   for (const num of nums1) {
-    ans.push(map.get(num)!)
+    ans.push(map.get(num)!);
   }
   return ans;
 }
@@ -48,10 +49,14 @@ function checkStraightLine(coordinates: number[][]): boolean {
  * Space Complexity: O(1)
  */
 function nearestValidPoint(x: number, y: number, points: number[][]): number {
-  let validPointsIndex = -1, sum = x + y, minDif = Infinity;
+  let validPointsIndex = -1,
+    sum = x + y,
+    minDif = Infinity;
   for (let i = 0; i < points.length; i++) {
-    let curX = points[i][0], curY = points[i][1], curSum = curX + curY;
-    let diff = Math.abs(curSum - sum)
+    let curX = points[i][0],
+      curY = points[i][1],
+      curSum = curX + curY;
+    let diff = Math.abs(curSum - sum);
     if ((curX === x || curY === y) && diff < minDif) {
       validPointsIndex = i;
       minDif = diff;
@@ -132,17 +137,17 @@ function merge(nums1: number[], m: number, nums2: number[], n: number): void {
 function intersect(nums1: number[], nums2: number[]): number[] {
   let map = new Map<number, number>();
   let ans: number[] = [];
-  nums1.forEach(num => {
+  nums1.forEach((num) => {
     if (map.has(num)) {
       map.set(num, map.get(num)! + 1);
     } else map.set(num, 1);
-  })
-  nums2.forEach(num => {
+  });
+  nums2.forEach((num) => {
     if (map.get(num)) {
       map.set(num, map.get(num)! - 1);
-      ans.push(num)
+      ans.push(num);
     }
-  })
+  });
   return ans;
 }
 
@@ -173,9 +178,6 @@ function threeSum(nums: number[]): number[][] {
         else right--;
       }
     }
-
   }
   return result;
 }
-
-
