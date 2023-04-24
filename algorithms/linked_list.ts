@@ -176,9 +176,9 @@ function mergeNodes(head: ListNode | null): ListNode | null {
  */
 
 function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
-  let len = 0;
-  let prv = null;
-  let cur = head;
+  let len: number = 0;
+  let prv: ListNode | null = null;
+  let cur: ListNode | null = head;
   while (cur) {
     cur = cur.next;
     len++;
@@ -191,10 +191,11 @@ function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
     len--;
   }
   if (cur === head) head = head.next || null;
-  else if (!cur.next && prv) prv.next = null;
-  else if (cur.next && prv) prv.next = cur.next;
+  else if (!cur.next) prv.next = null;
+  else if (cur.next) prv.next = cur.next;
   return head;
 }
+
 
 /**
  * LeetCode Problem (Hard):
