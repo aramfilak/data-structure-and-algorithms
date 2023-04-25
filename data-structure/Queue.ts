@@ -13,62 +13,62 @@
  */
 
 class QueueNode {
-	next: QueueNode | null;
-	val: any;
+    next: QueueNode | null;
+    val: any;
 
-	constructor(val: any) {
-		this.val = val;
-		this.next = null;
-	}
+    constructor(val: any) {
+        this.val = val;
+        this.next = null;
+    }
 }
 
 class MyQueue {
-	head: QueueNode | null;
-	size = 0;
+    head: QueueNode | null;
+    size = 0;
 
-	constructor() {
-		this.head = null;
-	}
+    constructor() {
+        this.head = null;
+    }
 
-	push(val: number): void {
-		// O(n)
-		let newNode: QueueNode | null = new QueueNode(val);
-		if (!this.head) {
-			this.head = newNode;
-			this.size++;
-			return;
-		}
-		let cur: QueueNode | null = this.head;
-		while (cur) {
-			if (!cur.next) {
-				cur.next = newNode;
-				this.size++;
-				return;
-			} else {
-				cur = cur.next;
-			}
-		}
-	}
+    push(val: number): void {
+        // O(n)
+        let newNode: QueueNode | null = new QueueNode(val);
+        if (!this.head) {
+            this.head = newNode;
+            this.size++;
+            return;
+        }
+        let cur: QueueNode | null = this.head;
+        while (cur) {
+            if (!cur.next) {
+                cur.next = newNode;
+                this.size++;
+                return;
+            } else {
+                cur = cur.next;
+            }
+        }
+    }
 
-	pop(): number | null {
-		// O(1)
-		if (!this.head) return null;
-		let headVal: number = this.head.val;
-		this.head = this.head.next;
-		this.size--;
-		return headVal;
-	}
+    pop(): number | null {
+        // O(1)
+        if (!this.head) return null;
+        let headVal: number = this.head.val;
+        this.head = this.head.next;
+        this.size--;
+        return headVal;
+    }
 
-	peek(): number | null {
-		// O(1)
-		if (!this.head) return null;
-		return this.head.val;
-	}
+    peek(): number | null {
+        // O(1)
+        if (!this.head) return null;
+        return this.head.val;
+    }
 
-	empty(): boolean {
-		// O(1)
-		return this.size === 0;
-	}
+    empty(): boolean {
+        // O(1)
+        return this.size === 0;
+    }
 }
 
 const q: MyQueue = new MyQueue();

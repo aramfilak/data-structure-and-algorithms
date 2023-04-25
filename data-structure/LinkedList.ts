@@ -1,113 +1,114 @@
 class LinkedListNode {
-	data: any;
-	next: LinkedListNode | null;
-	prev: LinkedListNode | null;
+    data: any;
+    next: LinkedListNode | null;
+    prev: LinkedListNode | null;
 
-	constructor(data: any, next: LinkedListNode | null = null, prev: LinkedListNode | null = null) {
-		this.data = data;
-		this.next = next;
-		this.prev = prev;
-	}
+    constructor(data: any, next: LinkedListNode | null = null, prev: LinkedListNode | null = null) {
+        this.data = data;
+        this.next = next;
+        this.prev = prev;
+    }
 
-	toString() {
-		return `${this.data}`;
-	}
+    toString() {
+        return `${this.data}`;
+    }
 }
 
 class LinkedList {
-	head: LinkedListNode | null;
-	tail: LinkedListNode | null;
-	length: number;
-	constructor(initialValues: any[] = []) {
-		this.head = null;
-		this.tail = null;
-		this.length = 0;
+    head: LinkedListNode | null;
+    tail: LinkedListNode | null;
+    length: number;
 
-		for (let value of initialValues) {
-			this.insertEnd(value);
-		}
-	}
+    constructor(initialValues: any[] = []) {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
 
-	private addLinkedListNode(LinkedListNode: LinkedListNode): void {
-		this.length++;
-	}
+        for (let value of initialValues) {
+            this.insertEnd(value);
+        }
+    }
 
-	private deleteLinkedListNode(LinkedListNode: LinkedListNode): void {
-		this.length--;
-	}
+    private addLinkedListNode(LinkedListNode: LinkedListNode): void {
+        this.length++;
+    }
 
-	insertStart(data: any): void {
-		const newLinkedListNode = new LinkedListNode(data, this.head, null);
+    private deleteLinkedListNode(LinkedListNode: LinkedListNode): void {
+        this.length--;
+    }
 
-		if (this.head) {
-			this.head.prev = newLinkedListNode;
-		} else {
-			this.tail = newLinkedListNode;
-		}
+    insertStart(data: any): void {
+        const newLinkedListNode = new LinkedListNode(data, this.head, null);
 
-		this.head = newLinkedListNode;
-		this.addLinkedListNode(newLinkedListNode);
-	}
+        if (this.head) {
+            this.head.prev = newLinkedListNode;
+        } else {
+            this.tail = newLinkedListNode;
+        }
 
-	insertEnd(data: any): void {
-		const newLinkedListNode = new LinkedListNode(data, null, this.tail);
+        this.head = newLinkedListNode;
+        this.addLinkedListNode(newLinkedListNode);
+    }
 
-		if (this.tail) {
-			this.tail.next = newLinkedListNode;
-		} else {
-			this.head = newLinkedListNode;
-		}
+    insertEnd(data: any): void {
+        const newLinkedListNode = new LinkedListNode(data, null, this.tail);
 
-		this.tail = newLinkedListNode;
-		this.addLinkedListNode(newLinkedListNode);
-	}
+        if (this.tail) {
+            this.tail.next = newLinkedListNode;
+        } else {
+            this.head = newLinkedListNode;
+        }
 
-	removeStart(): void {
-		if (!this.head) {
-			return;
-		}
+        this.tail = newLinkedListNode;
+        this.addLinkedListNode(newLinkedListNode);
+    }
 
-		const LinkedListNodeToRemove = this.head;
+    removeStart(): void {
+        if (!this.head) {
+            return;
+        }
 
-		if (LinkedListNodeToRemove.next) {
-			LinkedListNodeToRemove.next.prev = null;
-		} else {
-			this.tail = null;
-		}
+        const LinkedListNodeToRemove = this.head;
 
-		this.head = LinkedListNodeToRemove.next;
-		this.deleteLinkedListNode(LinkedListNodeToRemove);
-	}
+        if (LinkedListNodeToRemove.next) {
+            LinkedListNodeToRemove.next.prev = null;
+        } else {
+            this.tail = null;
+        }
 
-	removeEnd(): void {
-		if (!this.tail) {
-			return;
-		}
+        this.head = LinkedListNodeToRemove.next;
+        this.deleteLinkedListNode(LinkedListNodeToRemove);
+    }
 
-		const LinkedListNodeToRemove = this.tail;
+    removeEnd(): void {
+        if (!this.tail) {
+            return;
+        }
 
-		if (LinkedListNodeToRemove.prev) {
-			LinkedListNodeToRemove.prev.next = null;
-		} else {
-			this.head = null;
-		}
+        const LinkedListNodeToRemove = this.tail;
 
-		this.tail = LinkedListNodeToRemove.prev;
-		this.deleteLinkedListNode(LinkedListNodeToRemove);
-	}
+        if (LinkedListNodeToRemove.prev) {
+            LinkedListNodeToRemove.prev.next = null;
+        } else {
+            this.head = null;
+        }
 
-	toString(): string {
-		let current = this.head;
-		let string = "";
-		while (current) {
-			string += current.toString();
-			if (current.next) {
-				string += " -> ";
-			}
-			current = current.next;
-		}
-		return string;
-	}
+        this.tail = LinkedListNodeToRemove.prev;
+        this.deleteLinkedListNode(LinkedListNodeToRemove);
+    }
+
+    toString(): string {
+        let current = this.head;
+        let string = "";
+        while (current) {
+            string += current.toString();
+            if (current.next) {
+                string += " -> ";
+            }
+            current = current.next;
+        }
+        return string;
+    }
 }
 
 const ll: LinkedList = new LinkedList([30, 20, 55, 99, 10, 66]);
