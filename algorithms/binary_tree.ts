@@ -255,9 +255,9 @@ function mergeTrees(root1: TreeNode | null, root2: TreeNode | null): TreeNode | 
         } else if (root1 && !root2) {
             newVal = root1.val;
         } else {
+            //@ts-ignore
             newVal = root2.val;
         }
-
         if (!dir) root3.val = newVal;
         if (dir === "LEFT") {
             root3.left = new TreeNode(newVal);
@@ -267,7 +267,9 @@ function mergeTrees(root1: TreeNode | null, root2: TreeNode | null): TreeNode | 
             root3.right = new TreeNode(newVal);
             root3 = root3.right;
         }
+        //@ts-ignore
         merge(root1?.left, root2?.left, root3, "LEFT");
+        //@ts-ignore
         merge(root1?.right, root2?.right, root3, "RIGHT");
     }
 
@@ -400,9 +402,10 @@ function lowestCommonAncestor(
  * Time Complexity:(n)
  * Space Complexity:(n)
  */
-
+//@ts-ignore
 function connect(root: Node | null): Node | null {
     if (!root) return null;
+    //@ts-ignore
     const queue: Node[] = [root];
 
     while (queue.length) {

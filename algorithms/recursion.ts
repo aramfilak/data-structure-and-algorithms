@@ -1,30 +1,15 @@
 /**
  * LeetCode Problem (Medium):
  * 50. Pow(x, n)
- * Time Complexity: O(n)
- * Space Complexity: O(n)
+ * Time Complexity: O(log n)
+ * Space Complexity: O(log n)
  */
 function myPow(x: number, n: number): number {
-    if (x === -1) {
-        if (n >= 2147483647) return -1;
-        if (n <= -2147483648) return 1;
-    }
-    if (x === 1) if (n >= 2147483647 || n <= -2147483648) return 1;
-    if (n <= -2147483648 || n >= 2147483647) return 0;
-
-    if (n > 0) {
-        const power = function (base: number, exponent: number): number {
-            if (exponent === 1) return base;
-            return base * power(base, exponent - 1);
-        };
-        return power(x, n);
-    } else {
-        const power = function (base: number, exponent: number): number {
-            if (exponent === 1) return base;
-            return power(base, exponent + 1) / base;
-        };
-        return power(x, n);
-    }
+    if (n === 0) return 1;
+    if (n === 1) return x;
+    if (n === -1) return 1 / x;
+    if (n % 2 === 0) return myPow(x * x, n / 2);
+    else return myPow(x * x, Math.floor(n / 2)) * x;
 }
 
 /**
