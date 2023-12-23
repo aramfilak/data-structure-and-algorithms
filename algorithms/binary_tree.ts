@@ -1,8 +1,8 @@
 //  Definition for a binary tree node.
 class TreeNode {
-    val: number;
-    left: TreeNode | null;
-    right: TreeNode | null;
+  public val: number;
+ public   left: TreeNode | null;
+ public   right: TreeNode | null;
 
     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
         this.val = val === undefined ? 0 : val;

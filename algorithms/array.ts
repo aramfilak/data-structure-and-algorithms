@@ -10,7 +10,7 @@ function nextGreaterElement(nums1: number[], nums2: number[]): number[] {
     const map: Map<number, number> = new Map();
     for (let i = 0; i < nums2.length; i++) {
         const cur: number = nums2[i];
-        while (stk.length && cur > stk.at(-1)!) {
+        while (stk.length && cur > stk[stk.length - 1]!) {
             map.set(stk.pop()!, cur);
         }
         stk.push(cur);
