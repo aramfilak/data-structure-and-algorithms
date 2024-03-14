@@ -148,7 +148,9 @@ function isSymmetric(root: TreeNode | null): boolean {
 function isSameTree(first: TreeNode | null, second: TreeNode | null): boolean {
 	if (!first && !second) return true;
 	if (!first || !second) return false;
-	return first?.val === second?.val && isSameTree(first?.left, second?.left) && isSameTree(first?.right, second.right);
+	return (
+		first?.val === second?.val && isSameTree(first?.left, second?.left) && isSameTree(first?.right, second.right)
+	);
 }
 
 /**
