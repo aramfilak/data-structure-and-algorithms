@@ -401,7 +401,6 @@ function connect(root: Node | null): Node | null {
 	const queue: Node[] = [root];
 
 	while (queue.length) {
-
 		let queueLen = queue.length;
 
 		for (let i = 0; i < queueLen; i++) {
@@ -409,11 +408,11 @@ function connect(root: Node | null): Node | null {
 			//@ts-ignore
 			curNode.next = i < queueLen - 1 ? queue[0] : null;
 			//@ts-ignore
-			if (curNode?.left) {queue.push(curNode.left);
+			if (curNode?.left) queue.push(curNode.left);
 			//@ts-ignore
 			if (curNode?.right) queue.push(curNode.right);
 		}
-	}
 
-	return root;
+		return root;
+	}
 }
