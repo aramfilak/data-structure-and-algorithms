@@ -9,50 +9,52 @@
  *  visit O(n)
  *  forward O(1)
  *  backword O(1)
+ *
+ * @format
  */
 
 class DoublyLinkedListNode {
-  next: DoublyLinkedListNode | null;
-  prev: DoublyLinkedListNode | null;
-  val: string;
+	next: DoublyLinkedListNode | null;
+	prev: DoublyLinkedListNode | null;
+	val: string;
 
-  constructor(val: string) {
-    this.next = null;
-    this.prev = null;
-    this.val = val;
-  }
+	constructor(val: string) {
+		this.next = null;
+		this.prev = null;
+		this.val = val;
+	}
 }
 
 class BrowserHistory {
-  curPosition: DoublyLinkedListNode;
-  size: number;
+	curPosition: DoublyLinkedListNode;
+	size: number;
 
-  constructor(homepage: string) {
-    this.curPosition = new DoublyLinkedListNode(homepage);
-    this.size = 1;
-  }
+	constructor(homepage: string) {
+		this.curPosition = new DoublyLinkedListNode(homepage);
+		this.size = 1;
+	}
 
-  visit(url: string): void {
-    const newPage: DoublyLinkedListNode = new DoublyLinkedListNode(url);
-    newPage.prev = this.curPosition;
-    this.curPosition.next = newPage;
-    this.curPosition = newPage;
-    this.size++;
-  }
+	visit(url: string): void {
+		const newPage: DoublyLinkedListNode = new DoublyLinkedListNode(url);
+		newPage.prev = this.curPosition;
+		this.curPosition.next = newPage;
+		this.curPosition = newPage;
+		this.size++;
+	}
 
-  back(steps: number): string {
-    while (steps && this.curPosition.prev) {
-      this.curPosition = this.curPosition.prev;
-      steps--;
-    }
-    return this.curPosition.val;
-  }
+	back(steps: number): string {
+		while (steps && this.curPosition.prev) {
+			this.curPosition = this.curPosition.prev;
+			steps--;
+		}
+		return this.curPosition.val;
+	}
 
-  forward(steps: number): string {
-    while (steps && this.curPosition.next) {
-      this.curPosition = this.curPosition.next;
-      steps--;
-    }
-    return this.curPosition.val;
-  }
+	forward(steps: number): string {
+		while (steps && this.curPosition.next) {
+			this.curPosition = this.curPosition.next;
+			steps--;
+		}
+		return this.curPosition.val;
+	}
 }
