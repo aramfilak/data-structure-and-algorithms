@@ -418,3 +418,42 @@ function connect(root: Node | null): Node | null {
 		return root;
 	}
 }
+
+/**
+ * LeetCode Problem (Medium):
+ * 1302. Deepest Leaves Sum
+ * Time Complexity:(n)
+ * Space Complexity:(n)
+ */
+function deepestLeavesSum(root: TreeNode | null): number {
+	if (!root) {
+		return 0;
+	}
+
+	let currentLevelSum = 0;
+	let deepestLevelSum = 0;
+
+	const nodes = [root];
+
+	while (nodes.length > 0) {
+		let length = nodes.length;
+		for (let i = 0; i < length; i++) {
+			const node = nodes[i];
+
+			currentLevelSum += node.val;
+
+			if (node.left) {
+				nodes.push(node.left);
+			}
+			if (node.right) {
+				nodes.push(node.right);
+			}
+		}
+
+		deepestLevelSum = currentLevelSum;
+		currentLevelSum = 0;
+		nodes.splice(0, length);
+	}
+
+	return deepestLevelSum;
+}

@@ -302,3 +302,38 @@ function capitalizeFirst(array: string[]): string[] {
 	inner(array, array.length - 1);
 	return array;
 }
+
+/**
+ * LeetCode Problem (Medium):
+ * 2705. Compact Object
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ */
+type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string]: JSONValue };
+type Obj = Record<string, JSONValue> | Array<JSONValue>;
+
+function compactObject(obj: Obj): Obj {
+	if (Array.isArray(obj)) {
+		return obj.filter(Boolean).map((val) => {
+			if (typeof val === 'object') {
+				return compactObject(val);
+			}
+			return val;
+		});
+	}
+
+	for (const key of Object.keys(obj)) {
+		const val = obj[key];
+
+		if (!val) {
+			delete obj[key];
+			continue;
+		}
+
+		if (typeof val === 'object') {
+			obj[key] = compactObject(val);
+		}
+	}
+
+	return obj;
+}
