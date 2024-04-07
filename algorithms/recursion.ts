@@ -225,7 +225,6 @@ function getLengthOf3NPlus1Sequence(n: number): number {
  * @param n start value.
  */
 function print3NPlus1Sequence(n: number): void {
-    console.log(n);
     if (n === 1) return;
     if (n % 2 === 0) print3NPlus1Sequence(n / 2);
     else print3NPlus1Sequence(3 * n + 1);
@@ -244,7 +243,6 @@ function printTriangleV2(rows: number): void {
     for (let i = 0; i < rows; i++) {
         row += "*";
     }
-    console.log(row);
 }
 
 /**

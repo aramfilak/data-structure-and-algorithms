@@ -2,8 +2,6 @@
  * ++++++++++++++++++++++++++++++++++++++++++++++
  *  >>>>>>>>>>>> LINEAR ALGORITHM  <<<<<<<<<<<<<<<<
  *  +++++++++++++++++++++++++++++++++++++++++++++++
- *
- * @format
  */
 
 /**
@@ -40,17 +38,25 @@ function countSort(array: number[]): void {
  * @return sorted array.
  */
 function quickSort(array: number[]): number[] {
-    if (array.length < 2) return array;
+    if (array.length < 2) {
+        return array;
+    }
+
     const pivot: number = array[array.length - 1];
     const left: number[] = [];
     const right: number[] = [];
     const equal: number[] = [];
 
     for (let val of array) {
-        if (val < pivot) left.push(val);
-        else if (val > pivot) right.push(val);
-        else equal.push(val);
+        if (val < pivot) {
+            left.push(val);
+        } else if (val > pivot) {
+            right.push(val);
+        } else {
+            equal.push(val);
+        }
     }
+
     return [...quickSort(left), ...equal, ...quickSort(right)];
 }
 
@@ -63,9 +69,14 @@ function quickSort(array: number[]): number[] {
  */
 function mergeSort(array: number[]): number[] {
     const half = array.length / 2;
-    if (array.length < 2) return array;
+
+    if (array.length < 2) {
+        return array;
+    }
+
     const left = array.slice(0, half);
     const right = array.slice(half);
+
     return merge(mergeSort(left), mergeSort(right));
 
     function merge(left: number[], right: number[]): number[] {
