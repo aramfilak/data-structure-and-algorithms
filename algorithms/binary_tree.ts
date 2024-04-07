@@ -132,6 +132,7 @@ function isSymmetric(root: TreeNode | null): boolean {
         return left.val === right.val && isMirror(left.left, right.right) && isMirror(left.right, right.left);
     }
 }
+
 /**
  * LeetCode Problem (Easy):
  * 100. Same Tree
@@ -307,6 +308,7 @@ function minDepth(root: TreeNode | null): number {
 
     return ans;
 }
+
 /**
  * LeetCode Problem (Medium):
  * 701. Insert into a Binary Search Tree

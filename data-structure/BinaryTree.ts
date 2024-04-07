@@ -31,13 +31,17 @@ class BinaryTree {
      */
     public insert(val: number): void {
         if (!this.root) return;
+
         const newNode: TreeNode = new TreeNode(val);
         let cur: TreeNode | null = this.root;
+
         while (true) {
-            if (cur.val === val) break;
-            else if (cur.val > val) {
-                if (cur.left) cur = cur.left;
-                else {
+            if (cur.val === val) {
+                break;
+            } else if (cur.val > val) {
+                if (cur.left) {
+                    cur = cur.left;
+                } else {
                     cur.left = newNode;
                     break;
                 }
@@ -155,5 +159,6 @@ tree.insert(25);
 tree.insert(30);
 tree.insert(4);
 console.log(tree.levelOrder());
-
+console.log(tree.postorderTraversal());
 console.log(tree.search(555));
+console.log(tree.search(11));
