@@ -273,8 +273,47 @@ function mergeTrees(root1: TreeNode | null, root2: TreeNode | null): TreeNode | 
 
 	merge(root1, root2, root3);
 	return root3;
-}
+} /**
+ * LeetCode Problem (Easy):
+ * 111. Minimum Depth of Binary Tree
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ */
 
+function minDepth(root: TreeNode | null): number {
+	let ans = 0;
+	if (!root) {
+		return ans;
+	}
+
+	const nodes = [root];
+	ans = 1;
+
+	while (nodes.length) {
+		const len = nodes.length;
+
+		for (let i = 0; i < len; i++) {
+			const node = nodes[i];
+
+			if (!node.left && !node.right) {
+				return ans;
+			}
+
+			if (node.left) {
+				nodes.push(node.left);
+			}
+
+			if (node.right) {
+				nodes.push(node.right);
+			}
+		}
+
+		ans++;
+		nodes.splice(0, len);
+	}
+
+	return ans;
+}
 /**
  * LeetCode Problem (Medium):
  * 701. Insert into a Binary Search Tree

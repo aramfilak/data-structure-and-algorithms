@@ -316,6 +316,7 @@ function compactObject(obj: Obj): Obj {
 	if (Array.isArray(obj)) {
 		return obj.filter(Boolean).map((val) => {
 			if (typeof val === 'object') {
+				//@ts-ignore
 				return compactObject(val);
 			}
 			return val;
@@ -330,7 +331,8 @@ function compactObject(obj: Obj): Obj {
 			continue;
 		}
 
-		if (typeof val === 'object') {
+		if (val === 'object') {
+			//@ts-ignore
 			obj[key] = compactObject(val);
 		}
 	}
