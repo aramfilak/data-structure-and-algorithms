@@ -1,6 +1,6 @@
 {
-  "dependencies": {
-    "prettier": "^3.2.5",
-    "ts-node-dev": "^2.0.0"
-  }
+    "dependencies": {
+        "prettier": "^3.2.5",
+        "ts-node-dev": "^2.0.0"
+    }
 }
