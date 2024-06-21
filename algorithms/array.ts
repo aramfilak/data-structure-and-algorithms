@@ -1,10 +1,35 @@
 /**
  * LeetCode Problem (Easy):
+ * 645. Set Mismatch
+ * Time Complexity: O(n)
+ * Space Complexity: O(n)
+ */
+function findErrorNums(nums: number[]): number[] {
+  const cache = new Set<number>();
+  let duplicate = -1;
+
+  for (const num of nums) {
+    if (cache.has(num)) {
+      duplicate = num;
+    } else {
+      cache.add(num);
+    }
+  }
+
+  for (let i = 1; i <= nums.length; i++) {
+    if (!cache.has(i)) {
+      return [duplicate, i];
+    }
+  }
+
+  return [];
+}
+
+/**
+ * LeetCode Problem (Easy):
  * 1752. Check if Array Is Sorted and Rotated
  * Time Complexity: O(n)
  * Space Complexity: O(1)
- *
- * @format
  */
 
 function check(nums: number[]): boolean {
