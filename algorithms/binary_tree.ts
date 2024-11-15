@@ -505,3 +505,82 @@ function deepestLeavesSum(root: TreeNode | null): number {
 
   return deepestLevelSum;
 }
+
+/**
+ * LeetCode Problem (Medium):
+ * 2196. Create Binary Tree From Descriptions
+ * Time Complexity:(n)
+ * Space Complexity:(n)
+ */
+function createBinaryTree(descriptions: number[][]): TreeNode | null {
+  const getRootValue = () => {
+    const rootValueCandidates = new Set<number>();
+    const eliminatedCandidates = new Set<number>();
+    const descriptionMapRepresentation = new Map<
+      number,
+      { left: number | null; right: number | null }
+    >();
+
+    descriptions.forEach((node) => {
+      const [parent, child, direction] = node;
+      rootValueCandidates.add(parent);
+      eliminatedCandidates.add(child);
+
+      if (direction === 1) {
+        descriptionMapRepresentation.set(parent, {
+          left: child,
+          right: descriptionMapRepresentation.get(parent)?.right || null,
+        });
+      } else {
+        descriptionMapRepresentation.set(parent, {
+          left: descriptionMapRepresentation.get(parent)?.left || null,
+          right: child,
+        });
+      }
+    });
+
+    descriptions.forEach((node) => {
+      const child = node[1];
+      if (eliminatedCandidates.has(node[1])) {
+        rootValueCandidates.delete(child);
+      }
+    });
+
+    return { rootValue: rootValueCandidates.values().next().value, descriptionMapRepresentation };
+  };
+
+  const { rootValue, descriptionMapRepresentation } = getRootValue();
+
+  const nodesStack: TreeNode[] = [];
+  const rootNode = new TreeNode(rootValue);
+  nodesStack.push(rootNode);
+
+  while (nodesStack.length > 0) {
+    for (let i = 0; i < nodesStack.length; i++) {
+      const node = nodesStack.pop();
+      const currentNodeValues = descriptionMapRepresentation.get(node.val);
+
+      if (currentNodeValues?.left) {
+        const currentLeftNode = new TreeNode(currentNodeValues.left);
+        node.left = currentLeftNode
+        nodesStack.push(currentLeftNode);
+      }
+
+      if (currentNodeValues?.right) {
+        const currentRightNode = new TreeNode(currentNodeValues.right);
+        node.right = currentRightNode
+        nodesStack.push(currentRightNode);
+      }
+    }
+  }
+
+  return rootNode
+}
+
+createBinaryTree([
+  [20, 15, 1],
+  [20, 17, 0],
+  [50, 20, 1],
+  [50, 80, 0],
+  [80, 19, 1],
+]);
