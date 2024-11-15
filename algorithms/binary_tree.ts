@@ -513,44 +513,39 @@ function deepestLeavesSum(root: TreeNode | null): number {
  * Space Complexity:(n)
  */
 function createBinaryTree(descriptions: number[][]): TreeNode | null {
-  const getRootValue = () => {
-    const rootValueCandidates = new Set<number>();
-    const eliminatedCandidates = new Set<number>();
-    const descriptionMapRepresentation = new Map<
-      number,
-      { left: number | null; right: number | null }
-    >();
+  const rootValueCandidates = new Set<number>();
+  const eliminatedCandidates = new Set<number>();
+  const descriptionMapRepresentation = new Map<
+    number,
+    { left: number | null; right: number | null }
+  >();
 
-    descriptions.forEach((node) => {
-      const [parent, child, direction] = node;
-      rootValueCandidates.add(parent);
-      eliminatedCandidates.add(child);
+  descriptions.forEach((node) => {
+    const [parent, child, direction] = node;
+    rootValueCandidates.add(parent);
+    eliminatedCandidates.add(child);
 
-      if (direction === 1) {
-        descriptionMapRepresentation.set(parent, {
-          left: child,
-          right: descriptionMapRepresentation.get(parent)?.right || null,
-        });
-      } else {
-        descriptionMapRepresentation.set(parent, {
-          left: descriptionMapRepresentation.get(parent)?.left || null,
-          right: child,
-        });
-      }
-    });
+    if (direction === 1) {
+      descriptionMapRepresentation.set(parent, {
+        left: child,
+        right: descriptionMapRepresentation.get(parent)?.right || null,
+      });
+    } else {
+      descriptionMapRepresentation.set(parent, {
+        left: descriptionMapRepresentation.get(parent)?.left || null,
+        right: child,
+      });
+    }
+  });
 
-    descriptions.forEach((node) => {
-      const child = node[1];
-      if (eliminatedCandidates.has(node[1])) {
-        rootValueCandidates.delete(child);
-      }
-    });
+  descriptions.forEach((node) => {
+    const child = node[1];
+    if (eliminatedCandidates.has(node[1])) {
+      rootValueCandidates.delete(child);
+    }
+  });
 
-    return { rootValue: rootValueCandidates.values().next().value, descriptionMapRepresentation };
-  };
-
-  const { rootValue, descriptionMapRepresentation } = getRootValue();
-
+  const rootValue = rootValueCandidates.values().next().value;
   const nodesStack: TreeNode[] = [];
   const rootNode = new TreeNode(rootValue);
   nodesStack.push(rootNode);
@@ -562,19 +557,19 @@ function createBinaryTree(descriptions: number[][]): TreeNode | null {
 
       if (currentNodeValues?.left) {
         const currentLeftNode = new TreeNode(currentNodeValues.left);
-        node.left = currentLeftNode
+        node.left = currentLeftNode;
         nodesStack.push(currentLeftNode);
       }
 
       if (currentNodeValues?.right) {
         const currentRightNode = new TreeNode(currentNodeValues.right);
-        node.right = currentRightNode
+        node.right = currentRightNode;
         nodesStack.push(currentRightNode);
       }
     }
   }
 
-  return rootNode
+  return rootNode;
 }
 
 createBinaryTree([
