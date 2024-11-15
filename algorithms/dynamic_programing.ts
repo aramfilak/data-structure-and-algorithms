@@ -4,9 +4,7 @@
  * Time Complexity: O(numRows^2)
  * Space Complexity: : O(numRows^2)
  *
- * @format
  */
-
 function generate(numRows: number): number[][] {
   let ans: number[][] = [];
   if (!numRows) return ans;
