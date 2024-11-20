@@ -571,3 +571,38 @@ function createBinaryTree(descriptions: number[][]): TreeNode | null {
 
   return rootNode;
 }
+
+/**
+ * LeetCode Problem (Medium):
+ * 1008. Construct Binary Search Tree from Preorder Traversal
+ * Time Complexity:(n)
+ * Space Complexity:(n)
+ */
+function bstFromPreorder(preorder: number[]): TreeNode | null {
+  const rootNode = new TreeNode(preorder[0]);
+
+  for (let i = 1; i < preorder.length; i++) {
+    let currentNode = rootNode;
+    const newNode = new TreeNode(preorder[i]);
+
+    while (true) {
+      if (newNode.val < currentNode.val) {
+        if (currentNode.left) {
+          currentNode = currentNode.left;
+        } else {
+          currentNode.left = newNode;
+          break;
+        }
+      } else {
+        if (currentNode.right) {
+          currentNode = currentNode.right;
+        } else {
+          currentNode.right = newNode;
+          break;
+        }
+      }
+    }
+  }
+
+  return rootNode;
+}
