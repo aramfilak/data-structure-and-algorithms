@@ -189,7 +189,7 @@ function romanToInt(s: string): number {
     L: 50,
     C: 100,
     D: 500,
-    M: 1000,
+    M: 1000
   };
   let ans = 0;
   for (let i = 0; i < s.length; i++) {
@@ -333,7 +333,7 @@ function intToRoman(num: number): string {
     [400, 'CD'],
     [500, 'D'],
     [900, 'CM'],
-    [1000, 'M'],
+    [1000, 'M']
   ];
   let ans: string = '',
     i = roman.length - 1;

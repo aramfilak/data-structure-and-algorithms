@@ -571,11 +571,3 @@ function createBinaryTree(descriptions: number[][]): TreeNode | null {
 
   return rootNode;
 }
-
-createBinaryTree([
-  [20, 15, 1],
-  [20, 17, 0],
-  [50, 20, 1],
-  [50, 80, 0],
-  [80, 19, 1],
-]);
