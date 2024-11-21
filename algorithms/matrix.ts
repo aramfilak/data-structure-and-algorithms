@@ -176,6 +176,7 @@ function spiralOrder(matrix: number[][]): number[] {
     return lastPosition;
   }
 }
+
 /**
  * LeetCode Problem (Medium):
  * 766. Toeplitz Matrix
@@ -215,4 +216,133 @@ function isToeplitzMatrix(matrix: number[][]): boolean {
   }
 
   return true;
+}
+
+/**
+ * LeetCode Problem (Medium):
+ * 1222. Queens That Can Attack the King
+ * Time Complexity: O(m*n)
+ * Space Complexity: O(1)
+ */
+function queensAttacktheKing(queens: number[][], king: number[]): number[][] {
+  const KING = 1;
+  const QUEEN = 2;
+  const board = Array.from({ length: 8 }, () => Array(8).fill(0));
+  board[king[0]][king[1]] = KING;
+  queens.forEach((queen) => (board[queen[0]][queen[1]] = QUEEN));
+
+  const queenCanAttackTheKing = (queen: number[]): boolean => {
+    const [qx, qy] = queen;
+    // top
+    for (let i = qy - 1; i > -1; i--) {
+      const block = board[qx][i];
+      if (block === KING) {
+        return true;
+      }
+      if (block === QUEEN) {
+        break;
+      }
+    }
+
+    // bottom
+    for (let i = qy + 1; i < 8; i++) {
+      const block = board[qx][i];
+      if (block === KING) {
+        return true;
+      }
+      if (block === QUEEN) {
+        break;
+      }
+    }
+
+    // right
+    for (let i = qx - 1; i > -1; i--) {
+      const block = board[i][qy];
+      if (block === KING) {
+        return true;
+      }
+      if (block === QUEEN) {
+        break;
+      }
+    }
+
+    // left
+    for (let i = qx + 1; i < 8; i++) {
+      const block = board[i][qy];
+      if (block === KING) {
+        return true;
+      }
+      if (block === QUEEN) {
+        break;
+      }
+    }
+
+    // top right diagonal
+    let trdx = qx - 1;
+    let trdy = qy + 1;
+
+    while (trdx > -1 && trdy < 8) {
+      const block = board[trdx][trdy];
+      if (block === KING) {
+        return true;
+      }
+      if (block === QUEEN) {
+        break;
+      }
+      trdx--;
+      trdy++;
+    }
+
+    // top left diagonal
+    let tldx = qx - 1;
+    let tldy = qy - 1;
+
+    while (tldx > -1 && tldy > -1) {
+      const block = board[tldx][tldy];
+      if (block === KING) {
+        return true;
+      }
+      if (block === QUEEN) {
+        break;
+      }
+      tldx--;
+      tldy--;
+    }
+
+    // bottom right diagonal
+    let brdx = qx + 1;
+    let brdy = qy + 1;
+
+    while (brdx < 8 && brdy < 8) {
+      const block = board[brdx][brdy];
+      if (block === KING) {
+        return true;
+      }
+      if (block === QUEEN) {
+        break;
+      }
+      brdx++;
+      brdy++;
+    }
+
+    // bottom left diagonal
+    let bldx = qx + 1;
+    let bldy = qy - 1;
+
+    while (bldx < 8 && bldy > -1) {
+      const block = board[bldx][bldy];
+      if (block === KING) {
+        return true;
+      }
+      if (block === QUEEN) {
+        break;
+      }
+      bldx++;
+      bldy--;
+    }
+
+    return false;
+  };
+
+  return queens.filter((queen) => queenCanAttackTheKing(queen));
 }
