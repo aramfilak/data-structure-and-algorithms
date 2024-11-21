@@ -221,7 +221,7 @@ function isToeplitzMatrix(matrix: number[][]): boolean {
 /**
  * LeetCode Problem (Medium):
  * 1222. Queens That Can Attack the King
- * Time Complexity: O(m*n)
+ * Time Complexity: O(n)
  * Space Complexity: O(1)
  */
 function queensAttacktheKing(queens: number[][], king: number[]): number[][] {
