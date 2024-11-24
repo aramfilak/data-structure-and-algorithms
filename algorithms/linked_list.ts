@@ -62,47 +62,6 @@ function hasCycle(head: ListNode | null): boolean {
 
 /**
  * LeetCode Problem (Medium):
- * 2. Add Two Numbers
- * Time Complexity: O(max(m,n))
- * Space Complexity: O(max(m,n))
- */
-// @ts-ignore
-function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
-  let cur1 = l1;
-  let cur2 = l2;
-  // @ts-ignore
-  let sum = 0n;
-  // @ts-ignore
-  let pow = 1n;
-  while (cur1 || cur2) {
-    if (cur1) {
-      sum += BigInt(cur1.val) * pow;
-      cur1 = cur1.next;
-    }
-    if (cur2) {
-      sum += BigInt(cur2.val) * pow;
-      cur2 = cur2.next;
-    }
-    // @ts-ignore
-    pow *= 10n;
-  }
-  // @ts-ignore
-  let head = new ListNode(Number(sum % 10n));
-  // @ts-ignore
-  sum /= 10n;
-  let cur = head;
-  while (sum) {
-    // @ts-ignore
-    cur.next = new ListNode(Number(sum % 10n));
-    cur = cur.next;
-    // @ts-ignore
-    sum /= 10n;
-  }
-  return head;
-}
-
-/**
- * LeetCode Problem (Medium):
  * 143. Reorder List
  * Time Complexity: O(n)
  * Space Complexity: O(n/2)
@@ -222,5 +181,39 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
     cur.next = node;
     cur = cur.next;
   }
+  return head;
+}
+
+/**
+ * LeetCode Problem (Medium):
+ * 445. Add Two Numbers II
+ * Time Complexity: O(n)
+ * Space Complexity: : O(n)
+ */
+function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+  const stack1: number[] = [];
+  const stack2: number[] = [];
+
+  while (l1) {
+    stack1.push(l1.val);
+    l1 = l1.next;
+  }
+
+  while (l2) {
+    stack2.push(l2.val);
+    l2 = l2.next;
+  }
+
+  let carry = 0;
+  let head: ListNode | null = null;
+
+  while (stack1.length > 0 || stack2.length > 0 || carry > 0) {
+    const sum = (stack1.pop() || 0) + (stack2.pop() || 0) + carry;
+    carry = Math.floor(sum / 10);
+    const newNode = new ListNode(sum % 10);
+    newNode.next = head;
+    head = newNode;
+  }
+
   return head;
 }

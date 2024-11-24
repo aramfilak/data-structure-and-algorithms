@@ -18,13 +18,10 @@
 //    - Depth-first search (DFS): A graph traversal algorithm that explores as far as possible along each branch before backtracking.
 //    - Breadth-first search (BFS): A graph traversal algorithm that explores all the vertices at the present depth before moving on to the vertices at the next depth.
 
-const graph: number[][] = [];
-
-function addDirectedGraph(graph: number[][], from: number, to: number): void {
-  graph[from][to] += 1;
-}
-
-function addUndirectedGraph(graph: number[][], from: number, to: number): void {
-  graph[from][to] += 1;
-  graph[to][from] += 1;
+class Edge {
+  constructor(
+    public from: number,
+    public to: number,
+    public weight: number,
+  ) {}
 }
